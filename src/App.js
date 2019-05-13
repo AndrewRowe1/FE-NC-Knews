@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Articles from './components/Articles';
+import Topics from './components/Topics';
 import NotFound from './components/NotFound';
-import { Router, Link } from '@reach/router';
+import { Router } from '@reach/router';
 
-class App extends Component() {
+class App extends Component {
   state = {
     loggedInUser: ''
   }
@@ -16,6 +17,7 @@ class App extends Component() {
         <Header logInUser={this.logInUser} />
         <Router>
           <Articles loggedInUser={loggedInUser} path="/articles" />
+          <Topics loggedInUser={loggedInUser} path="/topics" />
           <NotFound default />
         </Router>
       </div>
@@ -25,6 +27,5 @@ class App extends Component() {
     this.setState({ loggedInUser: username })
   }
 }
-//<h1>NC News React App</h1>/>
 
 export default App;

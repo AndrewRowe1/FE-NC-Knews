@@ -8,11 +8,12 @@ class LoginBox extends Component {
   render () {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input onChange={handleTyping} type="text" />
+        <input onChange={this.handleTyping} type="text" />
         <button>Login!</button>
       </form>
     )
   }
+
   handleTyping = (event) => {
     this.setState({ userNameInput: event.target.value })
   }
@@ -23,7 +24,6 @@ class LoginBox extends Component {
       .then(validUser => {
         this.props.logInUser(validUser);
       });
-
   }
 }
 

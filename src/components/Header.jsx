@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import { Router, Link } from '@reach/router'
+import { Link } from '@reach/router'
 import LogInBox from './LogInBox';
 
 class Header extends Component {
+
   render () {
+    const { logInUser } = this.props.logInUser;
     return (
-      <div ClassName="App-header">
-        <Link to='/'>Home</Link>
-        <Link to='/articles'>Articles</Link>
-        <Link to='/topics'>Topics</Link>
-      </div>
       <div>
-        <LogInBox />
+        <Link to='/'>Home </Link>
+        <Link to='/articles'>Articles </Link>
+        <Link to='/topics'>Topics</Link>
+        <br />
+        <LogInBox logInUser={logInUser} />
       </div>
     )
   }

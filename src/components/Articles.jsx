@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import getArticles from '../api';
+import { getArticles } from '../api';
 import ArticleList from './ArticleList';
-import Articles from '.component/Articles';
-import { Router, Link } from '@reach/router';
+//import { Router, Link } from '@reach/router';
 
 class Articles extends Component {
   state = { articles: null, loading: true };
@@ -12,18 +11,14 @@ class Articles extends Component {
     return loading ? <p>loading ...</p> : (
       <div>
         <button onClick={this.getAuthorsArticles}>get jessjelly article</button>
-        <ul>
-          {articles.map((article) => {
-            return <li key={article.article_id}>{article.title}</li>
-          })}
-        </ul>
+        <ArticleList articles={articles} />
       </div>
-
     );
   }
 
   getAuthorsArticles = () => {
     getArticles({ author: 'jessjelly' }).then((articles) => {
+      console.log(articles)
       this.setState({ articles, loading: false });
     });
   }
