@@ -17,15 +17,17 @@ class Articles extends Component {
   }
 
   getAuthorsArticles = () => {
-    getArticles({ author: 'jessjelly' }).then((articles) => {
-      console.log(articles)
-      this.setState({ articles, loading: false });
-    });
+    getArticles({ author: "jessjelly" })
+      .then((articles) => {
+        console.log(articles, 1)
+        this.setState({ articles, loading: false });
+      });
   }
 
   componentDidMount () {
     getArticles()
       .then((articles) => {
+        console.log(articles, 2)
         this.setState({ articles, loading: false });
       });
   }

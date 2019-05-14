@@ -1,8 +1,8 @@
 import axios from 'axios';
 const url = 'https://nc-news-andrewr.herokuapp.com/api';
-// {queryKEy: queryValue};
-export const getArticles = (query) => {
-  return axios.get(`${url}/articles`, { params: { query } })
+
+export const getArticles = query => {
+  return axios.get(`${url}/articles`, { params: query })
     .then(({ data: { articles } }) => {
       return articles;
     });
@@ -15,10 +15,16 @@ export const getUser = username => {
     })
 }
 
-export const getTopics = (query) => {
-  return axios.get(`${url}/topics`, { params: { query } })
+export const getTopics = query => {
+  return axios.get(`${url}/topics`, { params: query })
     .then(({ data: { topics } }) => {
-      console.log(topics);
       return topics;
     });
+}
+
+export const getComments = query => {
+  return axios.get(`${url}/comments`, { params: query })
+    .then(({ data: { comments } }) => {
+      return comments;
+    })
 }
