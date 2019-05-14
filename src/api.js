@@ -8,6 +8,20 @@ export const getArticles = query => {
     });
 }
 
+export const getArticle = id => {
+  return axios.get(`${url}/articles/${id}`)
+    .then(({ data: { article } }) => {
+      return article;
+    });
+}
+
+export const submitArticle = body => {
+  return axios.post(`${url}/articles/`, body)
+    .then(({ data: { article } }) => {
+      return article;
+    });
+}
+
 export const getUser = username => {
   return axios.get(`${url}/users/${username}`)
     .then(({ data: { user } }) => {
