@@ -10,8 +10,6 @@ class LoginBox extends Component {
     const { loggedInUser } = this.props;
     const { userNameInput, error } = this.state;
 
-    console.log(userNameInput)
-    console.log(error)
     return (!loggedInUser ? (
       <form onSubmit={this.handleSubmit}>
         <input placeholder="Input username" onChange={this.handleTyping} type="text" />

@@ -1,28 +1,44 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
-import { submitArticle } from '../api';
+import { submitArticle, getTopics } from '../api';
 
 class NewArticleForm extends Component {
   state = {
-    title: 'How',
-    body: '',
+    topic: 'coding',
+    title: null,
+    body: null,
     author: this.props.loggedInUser,
-    slug: 'coding'
+    topics: null
   }
 
+  //<textarea placeholder="topic" onChange={(event => { this.handleChange('topic', event.target.value) })} />
   render () {
-    const { body } = this.state;
+    const { topic, title, body, author, topics } = this.state;
     const { loggedInUser } = this.props;
     return loggedInUser ? (
       <form onSubmit={this.handleSubmit} >
-        <textarea onChange={(event => { this.handleChange('title', event.target.value) })} />
+        <span>
+          <select type="dropdown" onChange={(event => { this.handleChange('topic', event.target.value) })}>
+            {topics.map((topic) => {
+              return (
+                <option value={topic.slug}>{topic.slug}</option>
+              )
+            })}
+          </select>
+        </span>
+        <span>
+          <textarea placeholder="title" onChange={(event => { this.handleChange('title', event.target.value) })} />
+        </span>
+        <span>
+          <textarea placeholder="body" onChange={(event => { this.handleChange('body', event.target.value) })} />
+        </span>
         <button >Submit Article</button>
       </form>
     ) : <p>Need to be logged in to be able to post an article!</p>
   }
 
   handleChange = (key, value) => {
-    this.setState({ [key]: value });
+    this.setState({ [key]: value, author: this.props.loggedInUser });
   }
 
   handleSubmit = (event) => {
@@ -32,6 +48,13 @@ class NewArticleForm extends Component {
       navigate(`/articles/${article.article_id}`, { state: { new: true } })
     });
   };
+
+  componentDidMount () {
+    getTopics()
+      .then((topics) => {
+        this.setState({ topics });
+      });
+  }
 }
 
 export default NewArticleForm;
