@@ -1,7 +1,7 @@
 import React from 'react';
 
-const NotFound = () => {
-  return <h1>not found.....</h1>
+const NotFound = (props) => {
+  return props.uri !== '/' ? <h1>not found.....</h1> : null
 }
 
 export default NotFound;
