@@ -3,14 +3,20 @@ import { getUser } from '../api';
 
 class LoginBox extends Component {
   state = {
-    userNameInput: null
+    userNameInput: null,
+    error: false
   }
   render () {
     const { loggedInUser } = this.props;
-    return !loggedInUser ? (
+    const { userNameInput, error } = this.state;
+
+    console.log(userNameInput)
+    console.log(error)
+    return (!loggedInUser ? (
       <form onSubmit={this.handleSubmit}>
         <input placeholder="Input username" onChange={this.handleTyping} type="text" />
         <button>Login!</button>
+        {(error && userNameInput === null) ? <p>Invalid username! Please login again</p> : null}
       </form>
     )
       : (
@@ -18,6 +24,7 @@ class LoginBox extends Component {
           <button>Logout as {loggedInUser}!</button>
         </form>
       )
+    )
   }
 
   handleTyping = (event) => {
@@ -29,6 +36,10 @@ class LoginBox extends Component {
     getUser(this.state.userNameInput)
       .then(validUser => {
         this.props.logInUser(validUser.username);
+        this.setState({ error: false })
+      })
+      .catch(() => {
+        this.setState({ userNameInput: null, error: true })
       });
   }
 
