@@ -22,8 +22,6 @@ class LoginBox extends Component {
     event.preventDefault();
     getUser(this.state.userNameInput)
       .then(validUser => {
-        console.log(validUser);
-        console.log(this.props);
         this.props.logInUser(validUser.username);
       });
   }
