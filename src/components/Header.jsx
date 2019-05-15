@@ -13,7 +13,7 @@ class Header extends Component {
         <Link to='/new-articles'>Post New Articles </Link>
         <Link to='/topics'>Topics</Link>
         <br />
-        <LogInBox logInUser={logInUser} />
+        <LogInBox loggedInUser={this.props.loggedInUser} logInUser={logInUser} />
       </div>
     )
   }

@@ -6,12 +6,18 @@ class LoginBox extends Component {
     userNameInput: null
   }
   render () {
-    return (
+    const { loggedInUser } = this.props;
+    return !loggedInUser ? (
       <form onSubmit={this.handleSubmit}>
         <input placeholder="Input username" onChange={this.handleTyping} type="text" />
         <button>Login!</button>
       </form>
     )
+      : (
+        <form onSubmit={this.handleLogout}>
+          <button>Logout as {loggedInUser}!</button>
+        </form>
+      )
   }
 
   handleTyping = (event) => {
@@ -24,6 +30,10 @@ class LoginBox extends Component {
       .then(validUser => {
         this.props.logInUser(validUser.username);
       });
+  }
+
+  handleLogout = (event) => {
+    this.props.logInUser('');
   }
 }
 

@@ -19,7 +19,7 @@ class App extends Component {
     //console.log(loggedInUser);
     return (
       <div className="App">
-        <Header logInUser={this.logInUser} />
+        <Header loggedInUser={loggedInUser} logInUser={this.logInUser} />
         <Router>
           <Articles loggedInUser={loggedInUser} path="/articles" />
           <Article loggedInUser={loggedInUser} path="/articles/:article_id/*" />
