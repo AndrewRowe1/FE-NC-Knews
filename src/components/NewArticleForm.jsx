@@ -6,18 +6,19 @@ class NewArticleForm extends Component {
   state = {
     title: 'How',
     body: '',
-    author: 'jessjelly',
+    author: this.props.loggedInUser,
     slug: 'coding'
   }
 
   render () {
     const { body } = this.state;
-    return (
+    const { loggedInUser } = this.props;
+    return loggedInUser ? (
       <form onSubmit={this.handleSubmit} >
         <textarea onChange={(event => { this.handleChange('title', event.target.value) })} />
         <button >Submit Article</button>
       </form>
-    )
+    ) : <p>Need to be logged in to be able to post an article!</p>
   }
 
   handleChange = (key, value) => {

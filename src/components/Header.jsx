@@ -10,7 +10,7 @@ class Header extends Component {
       <div>
         <Link to='/'>Home </Link>
         <Link to='/articles'>Articles </Link>
-        <Link to='/new-articles'>Post New Articles </Link>
+        <Link to='/new-article'>Post New Article </Link>
         <Link to='/topics'>Topics</Link>
         <br />
         <LogInBox loggedInUser={this.props.loggedInUser} logInUser={logInUser} />
