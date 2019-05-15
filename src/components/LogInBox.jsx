@@ -8,7 +8,7 @@ class LoginBox extends Component {
   render () {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleTyping} type="text" />
+        <input placeholder="Input username" onChange={this.handleTyping} type="text" />
         <button>Login!</button>
       </form>
     )
@@ -22,7 +22,9 @@ class LoginBox extends Component {
     event.preventDefault();
     getUser(this.state.userNameInput)
       .then(validUser => {
-        this.props.logInUser(validUser);
+        console.log(validUser);
+        console.log(this.props);
+        this.props.logInUser(validUser.username);
       });
   }
 }

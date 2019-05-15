@@ -5,7 +5,7 @@ import LogInBox from './LogInBox';
 class Header extends Component {
 
   render () {
-    const { logInUser } = this.props.logInUser;
+    const { logInUser } = this.props;
     return (
       <div>
         <Link to='/'>Home </Link>

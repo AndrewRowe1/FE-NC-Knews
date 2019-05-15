@@ -16,6 +16,7 @@ class App extends Component {
 
   render () {
     const { loggedInUser } = this.state;
+    //console.log(loggedInUser);
     return (
       <div className="App">
         <Header logInUser={this.logInUser} />
