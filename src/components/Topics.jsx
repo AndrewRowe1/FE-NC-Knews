@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getTopics } from '../api';
-import TopicList from './TopicList';
+import TopicsList from './TopicsList';
 //import { Router, Link } from '@reach/router';
 
 class Topics extends Component {
@@ -10,7 +10,7 @@ class Topics extends Component {
     const { topics, loading } = this.state;
     return loading ? <p>loading ...</p> : (
       <div>
-        <TopicList topics={topics} />
+        <TopicsList topics={topics} />
       </div>
     );
   }

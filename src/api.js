@@ -36,9 +36,17 @@ export const getTopics = query => {
     });
 }
 
-export const getComments = query => {
-  return axios.get(`${url}/comments`, { params: query })
+export const getArticleComments = id => {
+  return axios.get(`${url}/articles/${id}/comments`)
     .then(({ data: { comments } }) => {
       return comments;
+    })
+}
+
+export const patchArticle = (id, voteDirection) => {
+  //voteDirection : {inc_votes : 1} or {inc_votes : -1}
+  return axios.patch(`${url}/articles/${id}`, voteDirection)
+    .then(({ data: { article } }) => {
+      return article;
     })
 }

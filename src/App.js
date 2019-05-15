@@ -13,6 +13,7 @@ class App extends Component {
   state = {
     loggedInUser: ''
   }
+
   render () {
     const { loggedInUser } = this.state;
     return (
@@ -20,8 +21,8 @@ class App extends Component {
         <Header logInUser={this.logInUser} />
         <Router>
           <Articles loggedInUser={loggedInUser} path="/articles" />
-          <Article path="{/articles/:article_id" />
-          <NewArticleForm path="/new-article" />
+          <Article loggedInUser={loggedInUser} path="/articles/:article_id/*" />
+          <NewArticleForm loggedInUser={loggedInUser} path="/new-article" />
           <Topics loggedInUser={loggedInUser} path="/topics" />
           <TopicArticles loggedInUser={loggedInUser} path="/topics/:topic" />
           <NotFound default />
