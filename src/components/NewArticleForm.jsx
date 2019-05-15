@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
-import { submitArticle, getTopics } from '../api';
+import { submitArticle } from '../api';
 
 class NewArticleForm extends Component {
   state = {
@@ -8,13 +8,10 @@ class NewArticleForm extends Component {
     title: null,
     body: null,
     author: this.props.loggedInUser,
-    topics: null
   }
 
-  //<textarea placeholder="topic" onChange={(event => { this.handleChange('topic', event.target.value) })} />
   render () {
-    const { topic, title, body, author, topics } = this.state;
-    const { loggedInUser } = this.props;
+    const { loggedInUser, topics } = this.props;
     return loggedInUser ? (
       <form onSubmit={this.handleSubmit} >
         <span>
@@ -49,12 +46,8 @@ class NewArticleForm extends Component {
     });
   };
 
-  componentDidMount () {
-    getTopics()
-      .then((topics) => {
-        this.setState({ topics });
-      });
-  }
+  /*componentDidMount () {
+  }*/
 }
 
 export default NewArticleForm;

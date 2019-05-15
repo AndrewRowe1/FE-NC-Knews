@@ -8,21 +8,23 @@ import Topics from './components/Topics';
 import TopicArticles from './components/TopicArticles';
 import NotFound from './components/NotFound';
 import { Router } from '@reach/router';
+import { getTopics } from './api';
 
 class App extends Component {
   state = {
-    loggedInUser: ''
+    loggedInUser: '',
+    topics: null
   }
 
   render () {
-    const { loggedInUser } = this.state;
+    const { loggedInUser, topics } = this.state;
     return (
       <div className="App">
         <Header loggedInUser={loggedInUser} logInUser={this.logInUser} />
         <Router>
           <Articles loggedInUser={loggedInUser} path="/articles" />
           <Article loggedInUser={loggedInUser} path="/articles/:article_id/*" />
-          <NewArticleForm loggedInUser={loggedInUser} path="/new-article" />
+          <NewArticleForm loggedInUser={loggedInUser} path="/new-article" topics={topics} />
           <Topics loggedInUser={loggedInUser} path="/topics" />
           <TopicArticles loggedInUser={loggedInUser} path="/topics/:topic" />
           <NotFound default />
@@ -30,8 +32,16 @@ class App extends Component {
       </div>
     );
   }
+
   logInUser = username => {
     this.setState({ loggedInUser: username })
+  }
+
+  componentDidMount () {
+    getTopics()
+      .then((topics) => {
+        this.setState({ topics });
+      });
   }
 }
 
