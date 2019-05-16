@@ -12,7 +12,7 @@ class LoginBox extends Component {
 
     return (!loggedInUser ? (
       <form onSubmit={this.handleSubmit}>
-        <input placeholder="Input username" onChange={this.handleTyping} type="text" />
+        <input required={true} placeholder="Input username" onChange={this.handleTyping} type="text" />
         <button>Login!</button>
         {(error && userNameInput === null) ? <p>Invalid username! Please login again</p> : null}
       </form>

@@ -9,6 +9,7 @@ class Article extends Component {
   render () {
     const { article, loading, display } = this.state;
     //const { state: locationState } = this.props.location;
+    //const {location} = this.props
     return loading ? <p>loading ...</p> : (
       <div>
         <h1>{article.title}</h1>
@@ -47,7 +48,7 @@ class Article extends Component {
   displayComments = () => {
     const { article } = this.state;
     this.setState({ display: false });
-    navigate(`/articles/${article.article_id}/comments`, { state: { new: true } })
+    navigate(`/articles/${article.article_id}/comments`, { state: { new: true } });
   }
 
   componentDidMount () {
@@ -55,6 +56,9 @@ class Article extends Component {
       .then(article => {
         this.setState({ article, loading: false, display: true })
       })
+    //.catch (({ response: { data, status } }
+    //console.log(data.message, status)
+    //navigate(`/error`, { state: { from: article, msg: data.message, status }, replace: true });
   }
 }
 

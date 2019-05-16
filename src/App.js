@@ -6,6 +6,7 @@ import Article from './components/Article';
 import NewArticleForm from './components/NewArticleForm';
 import Topics from './components/Topics';
 import TopicArticles from './components/TopicArticles';
+import ShowError from './components/ShowError';
 import NotFound from './components/NotFound';
 import { Router } from '@reach/router';
 import { getTopics } from './api';
@@ -27,6 +28,7 @@ class App extends Component {
           <NewArticleForm loggedInUser={loggedInUser} path="/new-article" topics={topics} />
           <Topics loggedInUser={loggedInUser} path="/topics" />
           <TopicArticles loggedInUser={loggedInUser} path="/topics/:topic" />
+          <ShowError default path="/error" />
           <NotFound default />
         </Router>
       </div>
