@@ -7,7 +7,6 @@ class Articles extends Component {
 
   render () {
     const { articles, loading } = this.state;
-    const { loggedInUser } = this.props;
     return loading ? <p>loading ...</p> : (
       <div>
         <button key="sort_by_date" onClick={() => { this.sortArticles('created_at') }}>Sort Articles by Date</button>

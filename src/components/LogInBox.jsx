@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getUser } from '../api';
+import { navigate } from '@reach/router';
 
 class LoginBox extends Component {
   state = {
@@ -43,6 +44,7 @@ class LoginBox extends Component {
 
   handleLogout = (event) => {
     this.props.logInUser('');
+    navigate('/');
   }
 }
 

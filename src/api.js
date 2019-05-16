@@ -30,6 +30,13 @@ export const submitComment = (id, body) => {
     });
 }
 
+export const deleteComment = (id) => {
+  return axios.delete(`${url}/comments/${id}`)
+    .then(({ data }) => {
+      return data;
+    });
+}
+
 export const getUser = username => {
   return axios.get(`${url}/users/${username}`)
     .then(({ data: { user } }) => {

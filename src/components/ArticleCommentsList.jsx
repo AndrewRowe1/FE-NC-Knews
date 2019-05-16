@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { navigate } from '@reach/router';
-import { submitComment } from '../api';
+import { Link } from '@reach/router';
+import { submitComment, deleteComment } from '../api';
 
 class ArticleCommentsList extends Component {
   state = {
@@ -10,15 +10,20 @@ class ArticleCommentsList extends Component {
   };
 
   render () {
-    const { comments } = this.state;
+    const { comments, username } = this.state;
+    const { article, loggedInUser } = this.props;
+    console.log(comments)
     return (
       <div>
-        <form onSubmit={this.handleSubmit} >
+        {(username || loggedInUser) ? (<form onSubmit={this.handleSubmit} >
           <span>
             <textarea required={true} placeholder="body" onChange={(event => { this.handleChange('body', event.target.value) })} />
           </span>
-          <button >Submit Comment</button>
-        </form>
+          <button>Submit Comment</button>
+        </form>) : null}
+        <div onClick={this.handleClick}>
+          <Link to={`/articles/${article.article_id}`} >Go back to article</Link>
+        </div>
         <table>
           <tbody>
             <tr className="articleCommentsList">
@@ -28,8 +33,10 @@ class ArticleCommentsList extends Component {
               <th>Votes</th>
               <th>Created At</th>
               <th>Body</th>
+              <th>Delete Comment</th>
             </tr>
             {comments.map((comment) => {
+              console.log(username);
               return (
                 <tr key={comment.comment_id}>
                   <td>{comment.author}</td>
@@ -38,13 +45,44 @@ class ArticleCommentsList extends Component {
                   <td>{comment.votes}</td>
                   <td>{comment.created_at}</td>
                   <td>{comment.body}</td>
+                  <td>
+                    {username === comment.author ?
+                      <button onClick={() => this.handleDelete(comment.comment_id)}>
+                        Delete Comment
+                      </button>
+                      : null}
+                  </td>
                 </tr>
               )
             })}
           </tbody>
         </table>
-      </div>
+      </div >
     )
+  }
+
+  handleDelete = commentId => {
+    deleteComment(commentId).then(comment => {
+      this.setState((prevState) => {
+        const filtered = prevState.comments.filter(element => {
+          return element.comment_id !== commentId
+        })
+        console.log(filtered)
+        this.setState({ filtered });
+      });
+    });
+  }
+
+  componentDidMount () {
+    const { comments } = this.props;
+    this.setState({ comments });
+  }
+
+  componentDidUpdate () {
+    /*const { comments } = this.state;
+    if (comments !== this.props.comments) {
+      this.setState({  });
+    }*/
   }
 
   handleChange = (key, value) => {
@@ -62,9 +100,8 @@ class ArticleCommentsList extends Component {
     });
   };
 
-  componentDidMount () {
-    const { comments } = this.props;
-    this.setState({ comments });
+  handleClick = event => {
+    this.props.handleClick(true);
   }
 }
 
