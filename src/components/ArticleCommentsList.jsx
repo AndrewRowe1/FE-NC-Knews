@@ -5,11 +5,12 @@ import { submitComment } from '../api';
 class ArticleCommentsList extends Component {
   state = {
     body: null,
-    author: this.props.loggedInUser
+    username: this.props.loggedInUser,
+    comments: []
   };
 
   render () {
-    const { comments } = this.props;
+    const { comments } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit} >
@@ -30,7 +31,7 @@ class ArticleCommentsList extends Component {
             </tr>
             {comments.map((comment) => {
               return (
-                <tr>
+                <tr key={comment.comment_id}>
                   <td>{comment.author}</td>
                   <td>{comment.comment_id}</td>
                   <td>{comment.article_id}</td>
@@ -47,7 +48,7 @@ class ArticleCommentsList extends Component {
   }
 
   handleChange = (key, value) => {
-    this.setState({ [key]: value, author: this.props.loggedInUser });
+    this.setState({ [key]: value, username: this.props.loggedInUser });
   }
 
   handleSubmit = (event) => {
@@ -55,9 +56,16 @@ class ArticleCommentsList extends Component {
     const { article } = this.props;
     //I've clicked stop more clicking
     submitComment({ article_id: article.article_id }, this.state).then(comment => {
-      navigate(`/articles/${article.article_id}/comments`, { state: { new: true } })
+      this.setState((prevState) => {
+        return { comments: [...prevState.comments, comment] };
+      });
     });
   };
+
+  componentDidMount () {
+    const { comments } = this.props;
+    this.setState({ comments });
+  }
 }
 
 export default ArticleCommentsList;

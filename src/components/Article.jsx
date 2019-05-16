@@ -10,6 +10,8 @@ class Article extends Component {
     const { article, loading, display } = this.state;
     //const { state: locationState } = this.props.location;
     //const {location} = this.props
+    console.log('article rerender')
+    console.log(this.state);
     return loading ? <p>loading ...</p> : (
       <div>
         <h1>{article.title}</h1>
