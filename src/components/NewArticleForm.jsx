@@ -12,7 +12,6 @@ class NewArticleForm extends Component {
 
   render () {
     const { loggedInUser, topics } = this.props;
-    //const { warnBody, warnTitle } = this.state;
     return loggedInUser ? (
       <div>
         <form onSubmit={this.handleSubmit} >

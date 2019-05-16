@@ -7,9 +7,10 @@ class ArticleComments extends Component {
 
   render () {
     const { comments, loading } = this.state;
+    const { article } = this.props;
     return loading ? <p>loading ...</p> : (
       <div key="articleComments">
-        <ArticleCommentsList comments={comments} />
+        <ArticleCommentsList article={article} comments={comments} loggedInUser={this.props.loggedInUser} />
       </div>
     );
   }

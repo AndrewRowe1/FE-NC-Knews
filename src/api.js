@@ -22,6 +22,17 @@ export const submitArticle = body => {
     });
 }
 
+export const submitComment = (id, body) => {
+  console.log(id, body)
+  const { article_id } = id;
+  console.log(`${url}/articles/${article_id}/comments`)
+  return axios.post(`${url}/articles/${article_id}/comments`, body)
+    .then(({ data: { comment } }) => {
+      console.log(comment)
+      return comment;
+    });
+}
+
 export const getUser = username => {
   return axios.get(`${url}/users/${username}`)
     .then(({ data: { user } }) => {

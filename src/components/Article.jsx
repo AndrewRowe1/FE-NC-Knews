@@ -39,7 +39,7 @@ class Article extends Component {
             </tbody>
           </table> : null}
         < Router >
-          <ArticleComments path="comments" article={article} />
+          <ArticleComments path="comments" article={article} loggedInUser={this.props.loggedInUser} />
         </Router>
       </div >
     );
