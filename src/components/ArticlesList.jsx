@@ -5,7 +5,7 @@ const ArticlesList = ({ articles }) => {
   return (
     <ul>
       {articles.map((article) => {
-        return <table>
+        return <table key={article.article_id}>
           <tbody>
             <tr className="articleList">
               <th>Author</th>

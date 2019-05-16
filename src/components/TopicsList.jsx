@@ -5,7 +5,7 @@ const TopicList = ({ topics }) => {
   return (
     <ul>
       {topics.map((topic) => {
-        return <div>
+        return <div key={topic.slug}>
           <li key={topic.slug}>{topic.slug}{' '}{topic.description}</li>
           <button onClick={() => navigate(`/topics/${topic.slug}`, { state: { new: true } })}>
             Get related {topic.slug} articles
