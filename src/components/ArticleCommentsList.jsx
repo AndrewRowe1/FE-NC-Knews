@@ -12,7 +12,6 @@ class ArticleCommentsList extends Component {
   render () {
     const { comments, username } = this.state;
     const { article, loggedInUser } = this.props;
-    console.log(comments)
     return (
       <div>
         {(username || loggedInUser) ? (<form onSubmit={this.handleSubmit} >
@@ -26,7 +25,7 @@ class ArticleCommentsList extends Component {
         </div>
         <table>
           <tbody>
-            <tr className="articleCommentsList">
+            <tr key="commentHeaders" className="articleCommentsList">
               <th>Author</th>
               <th>Comment ID</th>
               <th>Article ID</th>
@@ -63,26 +62,17 @@ class ArticleCommentsList extends Component {
 
   handleDelete = commentId => {
     deleteComment(commentId).then(comment => {
-      this.setState((prevState) => {
-        const filtered = prevState.comments.filter(element => {
-          return element.comment_id !== commentId
-        })
-        console.log(filtered)
-        this.setState({ filtered });
-      });
+      const { comments } = this.state;
+      const filtered = comments.filter(element => {
+        return element.comment_id !== commentId
+      })
+      this.setState({ comments: filtered });
     });
   }
 
   componentDidMount () {
     const { comments } = this.props;
     this.setState({ comments });
-  }
-
-  componentDidUpdate () {
-    /*const { comments } = this.state;
-    if (comments !== this.props.comments) {
-      this.setState({  });
-    }*/
   }
 
   handleChange = (key, value) => {
