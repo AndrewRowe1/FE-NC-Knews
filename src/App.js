@@ -28,7 +28,7 @@ class App extends Component {
           <NewArticleForm loggedInUser={loggedInUser} path="/new-article" topics={topics} />
           <Topics loggedInUser={loggedInUser} path="/topics" />
           <TopicArticles loggedInUser={loggedInUser} path="/topics/:topic" />
-          <ShowError default path="/error" />
+          <ShowError path="/error" />
           <NotFound default />
         </Router>
       </div>

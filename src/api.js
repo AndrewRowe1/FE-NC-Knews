@@ -12,7 +12,10 @@ export const getArticle = id => {
   return axios.get(`${url}/articles/${id}`)
     .then(({ data: { article } }) => {
       return article;
-    });
+    })
+    .catch((error) => {
+      return error.response.data;
+    })
 }
 
 export const submitArticle = body => {

@@ -18,14 +18,12 @@ class Article extends Component {
           <tbody>
             <tr className="articleList">
               <th>Author</th>
-              <th>Article ID</th>
               <th>Votes</th>
               <th>Created At</th>
               <th>Body</th>
             </tr>
             <tr>
               <td>{article.author}</td>
-              <td>{article.article_id}</td>
               <td>{article.votes + votes}</td>
               <td>{article.created_at}</td>
               <td>{article.body}</td>
@@ -53,9 +51,16 @@ class Article extends Component {
   componentDidMount () {
     getArticle(this.props.article_id)
       .then(article => {
-        this.setState({ article, loading: false, votes: 0 })
+        if (typeof article === 'string') {
+          navigate('/error', { state: { msg: article }, replace: true });
+        }
+        else {
+          this.setState({ article, loading: false, votes: 0 })
+        }
       })
-      .catch(() => { navigate('/error') })
+      .catch((error) => {
+        navigate('/error')
+      })
   }
   //.catch (({ response: { data, status } }
   //console.log(data.message, status)
