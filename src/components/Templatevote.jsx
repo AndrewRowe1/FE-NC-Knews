@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { patchArticle, getArticleComments } from '../api';
+import { patchArticle, getArticle, getArticles } from '../api';
 
 // in articles
 class TemplateVote extends Component {
@@ -44,6 +44,7 @@ class TemplateVote extends Component {
 
   componentDidMount () {
     //axios.get
+    let { votes } = this.state
     getArticle(this.props.article_id).then((article) => {
       this.setState({ article, votes });
     })
