@@ -65,3 +65,11 @@ export const patchArticle = (id, voteDirection) => {
       return article;
     })
 }
+
+export const patchComment = (id, voteDirection) => {
+  //voteDirection : {inc_votes : 1} or {inc_votes : -1}
+  return axios.patch(`${url}/comments/${id}`, voteDirection)
+    .then(({ data: { comment } }) => {
+      return comment;
+    })
+}

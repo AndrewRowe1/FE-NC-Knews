@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import { submitComment, deleteComment } from '../api';
+import { submitComment, patchComment, deleteComment } from '../api';
 
 class ArticleCommentsList extends Component {
   state = {
     body: null,
     username: this.props.loggedInUser,
-    comments: []
+    comments: [],
+    voting: []
   };
 
   render () {
-    const { comments, username } = this.state;
+    const { comments, username, voting } = this.state;
     const { article, loggedInUser } = this.props;
     return (
       <div>
@@ -32,18 +33,26 @@ class ArticleCommentsList extends Component {
               <th>Votes</th>
               <th>Created At</th>
               <th>Body</th>
+              <th>Vote on Comment</th>
               <th>Delete Comment</th>
             </tr>
             {comments.map((comment) => {
-              console.log(username);
               return (
                 <tr key={comment.comment_id}>
                   <td>{comment.author}</td>
                   <td>{comment.comment_id}</td>
                   <td>{comment.article_id}</td>
-                  <td>{comment.votes}</td>
+                  <td>{comment.votes + (this.aggregateVoting(comment.comment_id, voting) || 0)}</td>
                   <td>{comment.created_at}</td>
                   <td>{comment.body}</td>
+                  <td>
+                    {loggedInUser ? (
+                      <div>
+                        <button disabled={this.aggregateVoting(comment.comment_id, voting) === 1} onClick={() => this.handleVote(comment.comment_id, 1)}> like</button>
+                        <button disabled={this.aggregateVoting(comment.comment_id, voting) === -1} onClick={() => this.handleVote(comment.comment_id, -1)}> dislike</ button>
+                      </div>
+                    ) : null}
+                  </td>
                   <td>
                     {username === comment.author ?
                       <button onClick={() => this.handleDelete(comment.comment_id)}>
@@ -60,6 +69,16 @@ class ArticleCommentsList extends Component {
     )
   }
 
+  aggregateVoting = (commentId, voteArray) => {
+    let votes = 0;
+    for (let i = 0; i < voteArray.length; i++) {
+      if (+Object.keys(voteArray[i])[0] === commentId) {
+        votes += (voteArray[i])[commentId];
+      }
+    }
+    return votes;
+  }
+
   handleDelete = commentId => {
     deleteComment(commentId).then(comment => {
       const { comments } = this.state;
@@ -72,7 +91,25 @@ class ArticleCommentsList extends Component {
 
   componentDidMount () {
     const { comments } = this.props;
-    this.setState({ comments });
+    this.setState({ comments, voting: [] });
+  }
+
+  componentDidUpdate (prevProps) {
+    const { loggedInUser } = this.props;
+    if (prevProps.loggedInUser !== loggedInUser) {
+      this.setState({ voting: [] });
+    }
+  }
+
+  handleVote = (commentId, direction) => {
+    patchComment(commentId, { inc_votes: direction })
+      .then(comment => {
+        this.setState((prevState) => {
+          const newVote = (prevState.voting.commentId || 0) + direction;
+          const newVoting = { [commentId]: newVote };
+          return { voting: [...prevState.voting, newVoting] };
+        })
+      })
   }
 
   handleChange = (key, value) => {

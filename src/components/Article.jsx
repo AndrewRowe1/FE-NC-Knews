@@ -54,23 +54,25 @@ class Article extends Component {
   componentDidMount () {
     getArticle(this.props.article_id)
       .then(article => {
-        this.setState({ article, loading: false, votes: article.votes })
+        this.setState({ article, loading: false, votes: 0 })
       })
   }
   //.catch (({ response: { data, status } }
   //console.log(data.message, status)
   //navigate(`/error`, { state: { from: article, msg: data.message, status }, replace: true });
 
-  /*componentDidUpdate () {
-  }*/
+  componentDidUpdate (prevProps) {
+    const { loggedInUser } = this.props;
+    if (prevProps.loggedInUser !== loggedInUser) {
+      this.setState({ votes: 0 })
+    }
+  }
 
   handleVote = (direction) => {
     patchArticle(this.props.article_id, { inc_votes: direction })
       .then(article => {
         this.setState((prevState) => {
           const newVote = prevState.votes + direction;
-          console.log(article)
-          console.log(newVote)
           return {
             votes: newVote
           }

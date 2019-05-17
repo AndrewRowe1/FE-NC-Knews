@@ -5,6 +5,8 @@ const ArticlesList = ({ articles }) => {
   return (
     <ul>
       {articles.map((article) => {
+        if (article.article_id === 33)
+          console.log(article.votes, 'articlesList')
         return <table key={article.article_id}>
           <tbody>
             <tr className="articleList">
