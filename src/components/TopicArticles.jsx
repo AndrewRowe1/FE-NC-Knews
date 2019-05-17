@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getArticles } from '../api';
 import ArticlesList from './ArticlesList';
-//import { Router, Link } from '@reach/router';
+import { navigate } from '@reach/router';
 
 class TopicArticles extends Component {
   state = { articles: null, loading: true };
@@ -20,7 +20,8 @@ class TopicArticles extends Component {
     getArticles({ topic: this.props.topic })
       .then((articles) => {
         this.setState({ articles, loading: false });
-      });
+      })
+      .catch(() => { navigate('/error') })
   }
 }
 

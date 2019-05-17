@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getArticleComments } from '../api';
 import ArticleCommentsList from './ArticleCommentsList';
+import { navigate } from '@reach/router';
 
 class ArticleComments extends Component {
   state = { comments: null, loading: true };
@@ -20,7 +21,8 @@ class ArticleComments extends Component {
     getArticleComments(article_id)
       .then(comments => {
         this.setState({ comments, loading: false })
-      });
+      })
+      .catch(() => { navigate('/error') })
   }
 }
 

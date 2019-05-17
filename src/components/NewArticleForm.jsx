@@ -19,7 +19,7 @@ class NewArticleForm extends Component {
             <select type="dropdown" onChange={(event => { this.handleChange('topic', event.target.value) })}>
               {topics.map((topic) => {
                 return (
-                  <option value={topic.slug}>{topic.slug}</option>
+                  <option key={topic.slug} value={topic.slug}>{topic.slug}</option>
                 )
               })}
             </select>

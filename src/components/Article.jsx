@@ -9,7 +9,6 @@ class Article extends Component {
   render () {
     const { article, loading, display, votes } = this.state;
     const { loggedInUser } = this.props;
-    console.log('Article re-render')
     //const { state: locationState } = this.props.location;
     //const {location} = this.props;
     return loading ? <p>loading ...</p> : (
@@ -56,6 +55,7 @@ class Article extends Component {
       .then(article => {
         this.setState({ article, loading: false, votes: 0 })
       })
+      .catch(() => { navigate('/error') })
   }
   //.catch (({ response: { data, status } }
   //console.log(data.message, status)
