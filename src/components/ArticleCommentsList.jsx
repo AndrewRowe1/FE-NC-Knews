@@ -13,6 +13,7 @@ class ArticleCommentsList extends Component {
   render () {
     const { comments, username, voting } = this.state;
     const { article, loggedInUser } = this.props;
+
     return (
       <div>
         {(username || loggedInUser) ? (<form onSubmit={this.handleSubmit} >
@@ -33,8 +34,12 @@ class ArticleCommentsList extends Component {
               <th>Votes</th>
               <th>Created At</th>
               <th>Body</th>
-              <th>Vote on Comment</th>
-              <th>Delete Comment</th>
+              <th>
+                {loggedInUser ? <div>Vote on Comment</div> : null}
+              </th>
+              <th>
+                {loggedInUser ? <div>Delete Comment</div> : null}
+              </th>
             </tr>
             {comments.map((comment) => {
               return (
@@ -54,7 +59,7 @@ class ArticleCommentsList extends Component {
                     ) : null}
                   </td>
                   <td>
-                    {username === comment.author ?
+                    {loggedInUser === comment.author ?
                       <button onClick={() => this.handleDelete(comment.comment_id)}>
                         Delete Comment
                       </button>
