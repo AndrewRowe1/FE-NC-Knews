@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
+import Landing from './components/Landing';
 import Articles from './components/Articles';
 import Article from './components/Article';
 import NewArticleForm from './components/NewArticleForm';
@@ -23,6 +24,7 @@ class App extends Component {
       <div className="App">
         <Header loggedInUser={loggedInUser} logInUser={this.logInUser} />
         <Router>
+          <Landing loggedInUser={loggedInUser} path="/" />
           <Articles loggedInUser={loggedInUser} path="/articles" />
           <Article loggedInUser={loggedInUser} path="/articles/:article_id/*" />
           <NewArticleForm loggedInUser={loggedInUser} path="/new-article" topics={topics} />

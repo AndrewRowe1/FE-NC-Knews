@@ -1,5 +1,5 @@
 import React from 'react';
-import { navigate } from '@reach/router';
+import { Link } from '@reach/router';
 
 const TopicList = ({ topics }) => {
   return (
@@ -7,9 +7,7 @@ const TopicList = ({ topics }) => {
       {topics.map((topic) => {
         return <div key={topic.slug}>
           <li key={topic.slug}>{topic.slug}{' '}{topic.description}</li>
-          <button onClick={() => navigate(`/topics/${topic.slug}`, { state: { new: true } })}>
-            Get related {topic.slug} articles
-          </button>
+          <Link to={`/topics/${topic.slug}`} >Get related {topic.slug} articles</Link>
         </div>
       })}
     </ul>
