@@ -4,7 +4,7 @@ import { submitComment, patchComment, deleteComment } from '../api';
 
 class ArticleCommentsList extends Component {
   state = {
-    body: null,
+    body: '',
     username: this.props.loggedInUser,
     comments: [],
     voting: []
@@ -18,7 +18,7 @@ class ArticleCommentsList extends Component {
       <div>
         {(username || loggedInUser) ? (<form onSubmit={this.handleSubmit} >
           <span>
-            <textarea required={true} placeholder="body" onChange={(event => {
+            <textarea required={true} placeholder="body" value={this.state.body} onChange={(event => {
               this.handleChange('body', event.target.value)
             })} />
           </span>
@@ -124,9 +124,8 @@ class ArticleCommentsList extends Component {
     const { article } = this.props;
     //I've clicked stop more clicking
     submitComment({ article_id: article.article_id }, this.state).then(comment => {
-      event.target.value = null;
       this.setState((prevState) => {
-        return { comments: [comment, ...prevState.comments], body: null };
+        return { comments: [comment, ...prevState.comments], body: '' };
       });
     });
   };
