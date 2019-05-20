@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { getArticleComments, submitComment, patchComment, deleteComment } from '../api';
+import { getArticleComments, submitComment, deleteComment } from '../api';
 import { navigate, Link } from '@reach/router';
 import FormatDate from './FormatDate';
+import CommentVoting from './CommentVoting';
 
 class ArticleComments extends Component {
   state = {
@@ -10,7 +11,7 @@ class ArticleComments extends Component {
 
   render () {
     const { body, comments, loading, voting, disable } = this.state;
-    const { article, handleClick, loggedInUser } = this.props;
+    const { article, loggedInUser } = this.props;
     return loading ? <p>loading ...</p> : (
       <div key="articleComments">
         <div>
@@ -34,9 +35,9 @@ class ArticleComments extends Component {
               <tbody>
                 <tr key="commentHeaders" className="articleCommentsList">
                   <th>Author</th>
-                  <th>Votes</th>
                   <th>Created At</th>
                   <th>Body</th>
+                  <th>Votes</th>
                   <th>
                     {loggedInUser ? <div>Vote on Comment</div> : null}
                   </th>
@@ -48,26 +49,18 @@ class ArticleComments extends Component {
                   return (
                     <tr key={comment.comment_id}>
                       <td>{comment.author}</td>
-                      <td>{comment.votes + (this.aggregateVoting(comment.comment_id, voting) || 0)}</td>
                       <td>
                         <div>
                           <FormatDate dateToFormat={article.created_at} />
                         </div>
                       </td>
                       <td>{comment.body}</td>
-                      <td>
-                        {loggedInUser ? (
-                          <div>
-                            <button disabled={this.aggregateVoting(comment.comment_id, voting) === 1 || disable} onClick={() => this.handleVote(comment.comment_id, 1)}> like</button>
-                            <button disabled={this.aggregateVoting(comment.comment_id, voting) === -1 || disable} onClick={() => this.handleVote(comment.comment_id, -1)}> dislike</ button>
-                          </div>
-                        ) : null}
-                      </td>
+                      <CommentVoting comment={comment} commentId={comment.comment_id} voting={voting} loggedInUser={loggedInUser} />
                       <td>
                         {loggedInUser === comment.author ?
-                          <button onClick={() => this.handleDelete(comment.comment_id)}>
+                          (<button onClick={() => this.handleDelete(comment.comment_id)}>
                             Delete Comment
-                      </button>
+                          </button>)
                           : null}
                       </td>
                     </tr>
@@ -80,6 +73,10 @@ class ArticleComments extends Component {
       </div>
     );
   }
+
+  /*<button disabled={this.aggregateVoting(comment.comment_id, voting) === 1 || disable} onClick={() => this.handleVote(comment.comment_id, 1)}> like</button>
+                              <button disabled={this.aggregateVoting(comment.comment_id, voting) === -1 || disable} onClick={() => this.handleVote(comment.comment_id, -1)}> dislike</ button>
+                              */
 
   /*<ArticleCommentsList article={article} comments={comments} loggedInUser={this.props.loggedInUser} handleClick={handleClick} />*/
 
@@ -120,16 +117,6 @@ class ArticleComments extends Component {
     this.props.handleClick(true);
   }
 
-  aggregateVoting = (commentId, voteArray) => {
-    let votes = 0;
-    for (let i = 0; i < voteArray.length; i++) {
-      if (+Object.keys(voteArray[i])[0] === commentId) {
-        votes += (voteArray[i])[commentId];
-      }
-    }
-    return votes;
-  }
-
   handleDelete = commentId => {
     deleteComment(commentId).then(comment => {
       const { comments } = this.state;
@@ -140,17 +127,6 @@ class ArticleComments extends Component {
     });
   }
 
-  handleVote = (commentId, direction) => {
-    this.setState({ disable: true });
-    patchComment(commentId, { inc_votes: direction })
-      .then(comment => {
-        this.setState((prevState) => {
-          const newVote = (prevState.voting.commentId || 0) + direction;
-          const newVoting = { [commentId]: newVote };
-          return { voting: [...prevState.voting, newVoting], disable: false };
-        })
-      })
-  }
 }
 
 export default ArticleComments;
