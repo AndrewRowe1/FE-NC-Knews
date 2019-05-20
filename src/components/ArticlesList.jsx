@@ -27,7 +27,7 @@ const ArticlesList = ({ articles }) => {
                 </div>
               </td>
               <td>{article.comment_count}</td>
-              <td>{article.body}</td>
+              <td>{firstTenWords(article.body)}</td>
               <td>
                 <Link to={`/articles/${article.article_id}`}>Get {article.title} article </Link>
               </td>
@@ -37,6 +37,19 @@ const ArticlesList = ({ articles }) => {
       })}
     </ul>
   )
+}
+
+const firstTenWords = (string) => {
+  const arr = string.split('');
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === ' ') {
+      count++;
+    }
+    if (count === 10) {
+      return arr.slice(0, i).join('');
+    }
+  }
 }
 
 export default ArticlesList;
