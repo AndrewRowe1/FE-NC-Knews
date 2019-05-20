@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getArticle, patchArticle } from '../api';
 import { Router, Link, navigate } from '@reach/router';
 import ArticleComments from './ArticleComments';
+import FormatDate from './FormatDate';
 
 class Article extends Component {
   state = { article: null, loading: true, display: true, votes: 0, disable: false };
@@ -24,7 +25,11 @@ class Article extends Component {
             <tr>
               <td>{article.author}</td>
               <td>{article.votes + votes}</td>
-              <td>{article.created_at}</td>
+              <td>
+                <div>
+                  <FormatDate dateToFormat={article.created_at} />
+                </div>
+              </td>
               <td>{article.body}</td>
             </tr>
           </tbody>

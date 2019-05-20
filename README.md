@@ -1,5 +1,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Hosted Version of the Project
+
+<.....to complete >
+
+## Back End Repository of the Project
+
+https://github.com/AndrewRowe1/BE-NC-Knews
+
+## Hosted Version of the Back End
+
+https://nc-news-andrewr.herokuapp.com/api
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getArticleComments, submitComment, patchComment, deleteComment } from '../api';
 import { navigate, Link } from '@reach/router';
+import FormatDate from './FormatDate';
 
 class ArticleComments extends Component {
   state = {
@@ -48,7 +49,11 @@ class ArticleComments extends Component {
                     <tr key={comment.comment_id}>
                       <td>{comment.author}</td>
                       <td>{comment.votes + (this.aggregateVoting(comment.comment_id, voting) || 0)}</td>
-                      <td>{comment.created_at}</td>
+                      <td>
+                        <div>
+                          <FormatDate dateToFormat={article.created_at} />
+                        </div>
+                      </td>
                       <td>{comment.body}</td>
                       <td>
                         {loggedInUser ? (

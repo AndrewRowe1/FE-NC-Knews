@@ -21,9 +21,11 @@ const ArticlesList = ({ articles }) => {
               <td>{article.author}</td>
               <td>{article.title}</td>
               <td>{article.votes}</td>
-              <td><div>
-                <FormatDate dateToFormat={article.created_at} />
-              </div></td>
+              <td>
+                <div>
+                  <FormatDate dateToFormat={article.created_at} />
+                </div>
+              </td>
               <td>{article.comment_count}</td>
               <td>{article.body}</td>
               <td>
