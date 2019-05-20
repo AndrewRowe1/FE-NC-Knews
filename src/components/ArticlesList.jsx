@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from '@reach/router'
+import { Link } from '@reach/router';
+import FormatDate from './FormatDate';
 
 const ArticlesList = ({ articles }) => {
   return (
@@ -20,7 +21,9 @@ const ArticlesList = ({ articles }) => {
               <td>{article.author}</td>
               <td>{article.title}</td>
               <td>{article.votes}</td>
-              <td>{article.created_at}</td>
+              <td><div>
+                <FormatDate dateToFormat={article.created_at} />
+              </div></td>
               <td>{article.comment_count}</td>
               <td>{article.body}</td>
               <td>
