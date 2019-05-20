@@ -44,7 +44,7 @@ class NewArticleForm extends Component {
     event.preventDefault();
     //I've clicked stop more clicking
     submitArticle(this.state).then(article => {
-      navigate(`/articles/${article.article_id}`, { state: { new: true } })
+      navigate(`/articles/${article.article_id}`)
     });
   };
 }

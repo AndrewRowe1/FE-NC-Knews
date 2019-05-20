@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { getTopics } from '../api';
 import TopicsList from './TopicsList';
-//import { Router, Link } from '@reach/router';
 
 class Topics extends Component {
   state = { topics: null, loading: true };

@@ -9,8 +9,7 @@ class Article extends Component {
   render () {
     const { article, loading, display, votes, disable } = this.state;
     const { loggedInUser } = this.props;
-    //const { state: locationState } = this.props.location;
-    //const {location} = this.props;
+
     return loading ? <p>loading ...</p> : (
       <div>
         <h1>{article.title}</h1>
@@ -62,9 +61,6 @@ class Article extends Component {
         navigate('/error')
       })
   }
-  //.catch (({ response: { data, status } }
-  //console.log(data.message, status)
-  //navigate(`/error`, { state: { from: article, msg: data.message, status }, replace: true });
 
   componentDidUpdate (prevProps) {
     const { loggedInUser } = this.props;
