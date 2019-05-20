@@ -7,11 +7,12 @@ class Articles extends Component {
 
   render () {
     const { articles, loading, sort } = this.state;
+    const sortMethods = ['created_at', 'comment_count', 'votes'];
     return loading ? <p>loading ...</p> : (
       <div>
-        <button disabled={sort === 'created_at'} key="sort_by_date" onClick={() => { this.sortArticles('created_at') }}>Sort Articles by Date</button>
-        <button disabled={sort === 'comment_count'} key="sort_by_comment_count" onClick={() => { this.sortArticles('comment_count') }}>Sort Articles by Comment Count</button>
-        <button disabled={sort === 'votes'} key="sort_by_votes" onClick={() => { this.sortArticles('votes') }}>Sort Articles by Votes</button>
+        {sortMethods.map((sorting) => {
+          return <button disabled={sort === sorting} key={`sort by ${sorting}`} onClick={() => { this.sortArticles(sorting) }}>Sort Articles by {sorting === 'created_at' ? 'date' : sorting} </button>
+        })}
         {sort ? <p>Articles sorted by {sort === 'created_at' ? 'date' : sort}</p> : null}
         <ArticlesList articles={articles} />
       </div>

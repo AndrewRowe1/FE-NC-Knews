@@ -5,7 +5,10 @@ export const getArticles = query => {
   return axios.get(`${url}/articles`, { params: query })
     .then(({ data: { articles } }) => {
       return articles;
-    });
+    })
+    .catch((error) => {
+      return error.response.data;
+    })
 }
 
 export const getArticle = id => {
@@ -51,7 +54,7 @@ export const getTopics = query => {
   return axios.get(`${url}/topics`, { params: query })
     .then(({ data: { topics } }) => {
       return topics;
-    });
+    })
 }
 
 export const getArticleComments = id => {

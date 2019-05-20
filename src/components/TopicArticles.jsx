@@ -11,7 +11,7 @@ class TopicArticles extends Component {
     return loading ? <p>loading ...</p> : (
       <div>
         <h1>{this.props.topic}</h1>
-        <ArticlesList articles={articles} />
+        {typeof articles !== 'string' ? <ArticlesList articles={articles} /> : null}
       </div>
     );
   }
@@ -19,7 +19,13 @@ class TopicArticles extends Component {
   componentDidMount () {
     getArticles({ topic: this.props.topic })
       .then((articles) => {
-        this.setState({ articles, loading: false });
+        if (typeof articles === 'string') {
+          navigate('/error', { state: { msg: articles }, replace: true });
+        } else if (articles.msg !== undefined) {
+          navigate('/error', { state: { msg: articles.msg }, replace: true });
+        } else {
+          this.setState({ articles, loading: false });
+        }
       })
       .catch(() => { navigate('/error') })
   }

@@ -1,59 +1,18 @@
 import React, { Component } from 'react';
-import { patchArticle, getArticle, getArticles } from '../api';
-import navigate from '@reach/router';
+import { getArticles } from '../api';
 
 // in articles
 class Template extends Component {
   state = { article: null, votes: 0 } //buttonClicked: false };
 
   render () {
-    const { article, votes } = this.state;
+    //const { article, votes } = this.state;
     //const { state: locationState } = this.props.location;
     return (
       <div>
-        <h3>votes: {article.votes + votes}</h3>
-        <button disabled={votes === 1} onClick={() => this.handleVote(1)}> like</button>
-        <button disabled={votes === -1} onClick={() => this.handleVote(-1)}> dislike</ button>
       </div >
     );
   }
-  //disable button
-  //conditional rendering
-
-  handleVote = (direction) => {
-    patchArticle(this.props.article_id, { inc_votes: direction })
-      .then(article => {
-        this.setState((prevState) => {
-          const newVote = prevState.votes + direction;
-          return {
-            votes: newVote,
-            //buttonClicked: true
-          }
-        })
-      })
-
-    //optimistic
-    patchArticle(this.props.article_id, { inc_votes: direction });
-    this.setState((prevState) => {
-      const newVote = prevState.votes + direction;
-      return {
-        votes: newVote,
-        //buttonClicked: true
-      }
-    })
-  }
-
-  componentDidMount () {
-    getArticle(this.props.article_id).then(article => {
-      this.setState({ article });
-    })
-      .catch(({ response: { data, status } }) => {
-        console.log(data.message, status)
-        navigate('/not-found', { replace: true })
-        // error in state
-      })
-  }
-
 
   //pagination
   /* 
