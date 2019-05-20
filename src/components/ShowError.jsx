@@ -2,6 +2,7 @@ import React from 'react';
 
 //function showing html error page
 const ShowError = ({ location }) => {
+  console.log(location.state)
   return (
     <div>
       {location.state ?

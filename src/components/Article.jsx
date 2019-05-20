@@ -52,8 +52,9 @@ class Article extends Component {
       .then(article => {
         if (typeof article === 'string') {
           navigate('/error', { state: { msg: article }, replace: true });
-        }
-        else {
+        } else if (article.msg !== undefined) {
+          navigate('/error', { state: { msg: article.msg }, replace: true });
+        } else {
           this.setState({ article, loading: false, votes: 0 })
         }
       })
