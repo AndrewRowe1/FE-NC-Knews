@@ -37,8 +37,7 @@ class Article extends Component {
           </div>
         ) : null}
         <div onClick={this.handleClick}>
-          {display ?
-            <Link to={`/articles/${article.article_id}/comments`} >Go to comments</Link>
+          {display ? <Link to={`/articles/${article.article_id}/comments`} >Go to comments</Link>
             : null}
         </div>
         <Router>

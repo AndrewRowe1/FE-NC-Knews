@@ -25,10 +25,10 @@ class NewArticleForm extends Component {
             </select>
           </span>
           <span>
-            <textarea required={true} placeholder="title" onChange={(event => { this.handleChange('title', event.target.value) })} />
+            <input required={true} placeholder="title" onChange={(event => { this.handleChange('title', event.target.value) })} />
           </span>
           <span>
-            <textarea required={true} placeholder="body" onChange={(event => { this.handleChange('body', event.target.value) })} />
+            <input required={true} placeholder="body" onChange={(event => { this.handleChange('body', event.target.value) })} />
           </span>
           <button >Submit Article</button>
         </form>

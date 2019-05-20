@@ -12,19 +12,11 @@ class ArticleCommentsList extends Component {
   };
 
   render () {
-    const { comments, username, voting, disable } = this.state;
+    const { comments, voting, disable } = this.state;
     const { article, loggedInUser } = this.props;
 
     return (
       <div>
-        {(username || loggedInUser) ? (<form onSubmit={this.handleSubmit} >
-          <span>
-            <textarea required={true} placeholder="body" value={this.state.body} onChange={(event => {
-              this.handleChange('body', event.target.value)
-            })} />
-          </span>
-          <button>Submit Comment</button>
-        </form>) : null}
         <div onClick={this.handleClick}>
           <Link to={`/articles/${article.article_id}`} >Go back to article</Link>
         </div>
@@ -73,6 +65,18 @@ class ArticleCommentsList extends Component {
     )
   }
 
+  componentDidMount () {
+    const { comments } = this.props;
+    this.setState({ comments, voting: [] });
+  }
+
+  componentDidUpdate (prevProps) {
+    const { loggedInUser } = this.props;
+    if (prevProps.loggedInUser !== loggedInUser) {
+      this.setState({ voting: [] });
+    }
+  }
+
   aggregateVoting = (commentId, voteArray) => {
     let votes = 0;
     for (let i = 0; i < voteArray.length; i++) {
@@ -91,18 +95,6 @@ class ArticleCommentsList extends Component {
       })
       this.setState({ comments: filtered });
     });
-  }
-
-  componentDidMount () {
-    const { comments } = this.props;
-    this.setState({ comments, voting: [] });
-  }
-
-  componentDidUpdate (prevProps) {
-    const { loggedInUser } = this.props;
-    if (prevProps.loggedInUser !== loggedInUser) {
-      this.setState({ voting: [] });
-    }
   }
 
   handleVote = (commentId, direction) => {
