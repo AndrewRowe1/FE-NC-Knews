@@ -4,10 +4,10 @@ import { Router, Link, navigate } from '@reach/router';
 import ArticleComments from './ArticleComments';
 
 class Article extends Component {
-  state = { article: null, loading: true, display: true, votes: 0 };
+  state = { article: null, loading: true, display: true, votes: 0, disable: false };
 
   render () {
-    const { article, loading, display, votes } = this.state;
+    const { article, loading, display, votes, disable } = this.state;
     const { loggedInUser } = this.props;
     //const { state: locationState } = this.props.location;
     //const {location} = this.props;
@@ -32,8 +32,8 @@ class Article extends Component {
         </table>
         {loggedInUser ? (
           <div>
-            <button disabled={votes === 1} onClick={() => this.handleVote(1)}> like</button>
-            <button disabled={votes === -1} onClick={() => this.handleVote(-1)}> dislike</ button>
+            <button disabled={votes === 1 || disable} onClick={() => this.handleVote(1)}> like</button>
+            <button disabled={votes === -1 || disable} onClick={() => this.handleVote(-1)}> dislike</ button>
           </div>
         ) : null}
         <div onClick={this.handleClick}>
@@ -74,12 +74,13 @@ class Article extends Component {
   }
 
   handleVote = (direction) => {
+    this.setState({ disable: true })
     patchArticle(this.props.article_id, { inc_votes: direction })
       .then(article => {
         this.setState((prevState) => {
           const newVote = prevState.votes + direction;
           return {
-            votes: newVote
+            votes: newVote, disable: false
           }
         })
       })

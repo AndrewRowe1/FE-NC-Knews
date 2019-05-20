@@ -7,11 +7,12 @@ class ArticleCommentsList extends Component {
     body: '',
     username: this.props.loggedInUser,
     comments: [],
-    voting: []
+    voting: [],
+    disable: false
   };
 
   render () {
-    const { comments, username, voting } = this.state;
+    const { comments, username, voting, disable } = this.state;
     const { article, loggedInUser } = this.props;
 
     return (
@@ -51,8 +52,8 @@ class ArticleCommentsList extends Component {
                   <td>
                     {loggedInUser ? (
                       <div>
-                        <button disabled={this.aggregateVoting(comment.comment_id, voting) === 1} onClick={() => this.handleVote(comment.comment_id, 1)}> like</button>
-                        <button disabled={this.aggregateVoting(comment.comment_id, voting) === -1} onClick={() => this.handleVote(comment.comment_id, -1)}> dislike</ button>
+                        <button disabled={this.aggregateVoting(comment.comment_id, voting) === 1 || disable} onClick={() => this.handleVote(comment.comment_id, 1)}> like</button>
+                        <button disabled={this.aggregateVoting(comment.comment_id, voting) === -1 || disable} onClick={() => this.handleVote(comment.comment_id, -1)}> dislike</ button>
                       </div>
                     ) : null}
                   </td>
@@ -105,12 +106,13 @@ class ArticleCommentsList extends Component {
   }
 
   handleVote = (commentId, direction) => {
+    this.setState({ disable: true });
     patchComment(commentId, { inc_votes: direction })
       .then(comment => {
         this.setState((prevState) => {
           const newVote = (prevState.voting.commentId || 0) + direction;
           const newVoting = { [commentId]: newVote };
-          return { voting: [...prevState.voting, newVoting] };
+          return { voting: [...prevState.voting, newVoting], disable: false };
         })
       })
   }
