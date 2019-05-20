@@ -96,4 +96,22 @@ class Article extends Component {
   }
 }
 
+//pagination
+/* 
+total_count in state - needs destructuring from get axios request
+<button disabled={p<Math.ceil(total_count / 10)} onClick={() => { this.changePage(1) }} >More Articles</button>
+<button disabled={this.state.p === 1} onClick={() => { this.changePage(-1) }} >Previous Articles</button>
+
+changePage = direction => {
+  this.setState(prevState => {
+    return { p: prevState.p + direction };
+  })
+}
+
+componentDidUpdate(prevProps, prevState) {
+  if (prevState.p !== this.state.p) {
+    getArticles
+  }
+}*/
+
 export default Article;

@@ -14,7 +14,7 @@ class ArticleComments extends Component {
       <div key="articleComments">
         <div>
           {loggedInUser ?
-            (<form onSubmit={this.handleSubmit} >
+            (<form disabled={disable} onSubmit={this.handleSubmit} >
               <span>
                 <input required={true} placeholder="body" value={body} onChange={(event => {
                   this.handleChange('body', event.target.value)
@@ -101,12 +101,12 @@ class ArticleComments extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.setState({ disable: true });
     const { article, loggedInUser } = this.props;
-    const { body } = this.state;
-    //I've clicked stop more clicking
+    const { body, } = this.state;
     submitComment({ article_id: article.article_id }, { username: loggedInUser, body }).then(comment => {
       this.setState((prevState) => {
-        return { comments: [comment, ...prevState.comments], body: '' };
+        return { comments: [comment, ...prevState.comments], body: '', disable: false };
       });
     });
   };
