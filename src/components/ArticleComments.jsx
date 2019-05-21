@@ -6,11 +6,11 @@ import CommentVoting from './CommentVoting';
 
 class ArticleComments extends Component {
   state = {
-    body: '', comments: [], loading: true, voting: [], disable: false
+    body: '', comments: [], loading: true, disable: false
   };
 
   render () {
-    const { body, comments, loading, voting, disable } = this.state;
+    const { body, comments, loading, disable } = this.state;
     const { article, loggedInUser } = this.props;
     return loading ? <p>loading ...</p> : (
       <div key="articleComments">
@@ -51,11 +51,11 @@ class ArticleComments extends Component {
                       <td>{comment.author}</td>
                       <td>
                         <div>
-                          <FormatDate dateToFormat={article.created_at} />
+                          <FormatDate dateToFormat={comment.created_at} />
                         </div>
                       </td>
                       <td>{comment.body}</td>
-                      <CommentVoting comment={comment} commentId={comment.comment_id} voting={voting} loggedInUser={loggedInUser} />
+                      <CommentVoting comment={comment} commentId={comment.comment_id} loggedInUser={loggedInUser} />
                       <td>
                         {loggedInUser === comment.author ?
                           (<button onClick={() => this.handleDelete(comment.comment_id)}>
@@ -85,7 +85,7 @@ class ArticleComments extends Component {
     getArticleComments(article_id)
       .then(comments => {
         //this.setState({ comments, loading: false })
-        this.setState({ comments, loading: false, voting: [] })
+        this.setState({ comments, loading: false })
       })
       .catch(() => { navigate('/error') })
   }

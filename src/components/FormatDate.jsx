@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Moment from 'react-moment';
 
-class FormatDate extends Component {
-  render () {
-    const { dateToFormat } = this.props;
-    return (
-      <Moment format="YYYY/MM/DD hh:mm">{dateToFormat}</Moment >
-    );
-  }
+const FormatDate = props => {
+  const { dateToFormat } = props;
+  return <Moment format="YYYY/MM/DD hh:mm">{dateToFormat}</Moment >;
 }
 
 export default FormatDate;
