@@ -11,9 +11,9 @@ class NewArticleForm extends Component {
   }
 
   render () {
-    const { loggedInUser, topics } = this.props;
-    return loggedInUser ? (
-      <div>
+    const { loggedInUser, topics, execute } = this.props;
+    return loggedInUser ? (execute ?
+      (<div>
         <form onSubmit={this.handleSubmit} >
           <span>
             <select type="dropdown" onChange={(event => { this.handleChange('topic', event.target.value) })}>
@@ -32,7 +32,7 @@ class NewArticleForm extends Component {
           </span>
           <button >Submit Article</button>
         </form>
-      </div>
+      </div>) : <p>Loading ......</p>
     ) : <p>Need to be logged in to be able to post an article!</p>
   }
 

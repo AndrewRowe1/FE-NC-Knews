@@ -15,11 +15,12 @@ import { getTopics } from './api';
 class App extends Component {
   state = {
     loggedInUser: '',
-    topics: null
+    topics: null,
+    execute: false
   }
 
   render () {
-    const { loggedInUser, topics } = this.state;
+    const { loggedInUser, topics, execute } = this.state;
     return (
       <div className="App">
         <Header loggedInUser={loggedInUser} logInUser={this.logInUser} />
@@ -27,7 +28,7 @@ class App extends Component {
           <Landing loggedInUser={loggedInUser} path="/" />
           <Articles loggedInUser={loggedInUser} path="/articles" />
           <Article loggedInUser={loggedInUser} path="/articles/:article_id/*" />
-          <NewArticleForm loggedInUser={loggedInUser} path="/new-article" topics={topics} />
+          <NewArticleForm loggedInUser={loggedInUser} path="/new-article" topics={topics} execute={execute} />
           <Topics loggedInUser={loggedInUser} path="/topics" />
           <TopicArticles loggedInUser={loggedInUser} path="/topics/:topic" />
           <ShowError path="/error" />
@@ -43,12 +44,12 @@ class App extends Component {
   }
 
   componentDidMount () {
-    getTopics()
-      .then((topics) => {
-        this.setState({ topics });
-      });
     const username = localStorage.getItem('loggedInUser');
     this.setState({ loggedInUser: username });
+    getTopics()
+      .then((topics) => {
+        this.setState({ topics, execute: true });
+      });
   }
 }
 
