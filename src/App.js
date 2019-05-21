@@ -38,7 +38,8 @@ class App extends Component {
   }
 
   logInUser = username => {
-    this.setState({ loggedInUser: username })
+    this.setState({ loggedInUser: username });
+    localStorage.setItem('loggedInUser', username);
   }
 
   componentDidMount () {
@@ -46,6 +47,8 @@ class App extends Component {
       .then((topics) => {
         this.setState({ topics });
       });
+    const username = localStorage.getItem('loggedInUser');
+    this.setState({ loggedInUser: username });
   }
 }
 
