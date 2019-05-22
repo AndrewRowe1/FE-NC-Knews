@@ -42,7 +42,6 @@ class NewArticleForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    //I've clicked stop more clicking
     submitArticle(this.state).then(article => {
       navigate(`/articles/${article.article_id}`)
     });

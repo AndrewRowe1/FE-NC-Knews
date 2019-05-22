@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { getArticle, patchArticle } from '../api';
-import { Router, Link, navigate } from '@reach/router';
+import { navigate } from '@reach/router';
 import ArticleComments from './ArticleComments';
 import FormatDate from './FormatDate';
 
 class Article extends Component {
-  state = { article: null, loading: true, display: true, votes: 0, disable: false };
+  state = { article: null, loading: true, votes: 0, disable: false };
 
   render () {
-    const { article, loading, display, votes, disable } = this.state;
+    const { article, loading, votes, disable } = this.state;
     const { loggedInUser } = this.props;
 
     return loading ? <p>loading ...</p> : (
@@ -40,16 +40,22 @@ class Article extends Component {
             <button disabled={votes === -1 || disable} onClick={() => this.handleVote(-1)}> dislike</ button>
           </div>
         ) : null}
-        <div onClick={this.handleClick}>
-          {display ? <Link to={`/articles/${article.article_id}/comments`} >Go to comments</Link>
-            : null}
-        </div>
-        <Router>
-          <ArticleComments path="comments" article={article} loggedInUser={this.props.loggedInUser} handleClick={this.handleClick} />
-        </Router>
+        <ArticleComments article={article} loggedInUser={this.props.loggedInUser} />
       </div >
     );
   }
+
+  /*
+<div onClick={this.handleClick}>
+          {display ? <Link to={`/articles/${article.article_id}/comments`} >Go to comments</Link>
+            : null}
+        </div>
+
+  <Router>
+          <ArticleComments path="comments" article={article} loggedInUser={this.props.loggedInUser} handleClick={this.handleClick} />
+        </Router>
+  <ArticleComments article={article} loggedInUser={this.props.loggedInUser} handleClick={this.handleClick} />
+  */
 
   componentDidMount () {
     getArticle(this.props.article_id)
@@ -87,7 +93,7 @@ class Article extends Component {
       })
   }
 
-  handleClick = event => {
+  /*handleClick = event => {
     if (event === true) {
       this.setState({ display: true })
     } else {
@@ -98,7 +104,7 @@ class Article extends Component {
   displayComments = () => {
     const { article } = this.state;
     navigate(`/articles/${article.article_id}/comments`, { state: { new: true } });
-  }
+  }*/
 }
 
 //pagination

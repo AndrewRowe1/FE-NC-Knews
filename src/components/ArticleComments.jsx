@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { getArticleComments, submitComment, deleteComment } from '../api';
-import { navigate, Link } from '@reach/router';
 import FormatDate from './FormatDate';
 import CommentVoting from './CommentVoting';
 
@@ -26,11 +25,8 @@ class ArticleComments extends Component {
             </form>)
             : null}
         </div >
-        {article.comment_count > 0 ? (
+        {article.article_id > 0 ? (
           <div>
-            <div onClick={this.handleClick}>
-              <Link to={`/articles/${article.article_id}`} >Go back to article</Link>
-            </div>
             <table>
               <tbody>
                 <tr key="commentHeaders" className="articleCommentsList">
@@ -73,6 +69,10 @@ class ArticleComments extends Component {
       </div>
     );
   }
+  /*             <div onClick={this.handleClick}>
+              <Link to={`/articles/${article.article_id}`} >Go back to article</Link>
+            </div>
+  */
 
   /*<button disabled={this.aggregateVoting(comment.comment_id, voting) === 1 || disable} onClick={() => this.handleVote(comment.comment_id, 1)}> like</button>
                               <button disabled={this.aggregateVoting(comment.comment_id, voting) === -1 || disable} onClick={() => this.handleVote(comment.comment_id, -1)}> dislike</ button>
@@ -81,13 +81,11 @@ class ArticleComments extends Component {
   /*<ArticleCommentsList article={article} comments={comments} loggedInUser={this.props.loggedInUser} handleClick={handleClick} />*/
 
   componentDidMount () {
-    const { article_id } = this.props;
+    const { article_id } = this.props.article;
     getArticleComments(article_id)
       .then(comments => {
-        //this.setState({ comments, loading: false })
         this.setState({ comments, loading: false })
       })
-      .catch(() => { navigate('/error') })
   }
 
   componentDidUpdate (prevProps) {
@@ -113,9 +111,9 @@ class ArticleComments extends Component {
     });
   };
 
-  handleClick = event => {
+  /*handleClick = event => {
     this.props.handleClick(true);
-  }
+  }*/
 
   handleDelete = commentId => {
     deleteComment(commentId).then(comment => {
