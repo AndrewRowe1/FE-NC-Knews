@@ -22,10 +22,10 @@ class ArticleComments extends Component {
                 })} />
               </span>
               <button>Submit Comment</button>
-              <button disabled={p === Math.ceil(comment_count / 10)} onClick={() => { this.changePage(1) }} > More Articles</button >
-              <button disabled={this.state.p === 1} onClick={() => { this.changePage(-1) }} >Previous Articles</button>
             </form>)
             : null}
+          <button disabled={p === Math.ceil(comment_count / 10)} onClick={() => { this.changePage(1) }} > More Articles</button >
+          <button disabled={this.state.p === 1} onClick={() => { this.changePage(-1) }} >Previous Articles</button>
         </div >
         {article.article_id > 0 ? (
           <div>
