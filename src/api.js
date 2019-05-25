@@ -57,8 +57,8 @@ export const getTopics = query => {
     })
 }
 
-export const getArticleComments = id => {
-  return axios.get(`${url}/articles/${id}/comments`)
+export const getArticleComments = (id, query) => {
+  return axios.get(`${url}/articles/${id}/comments`, { params: query })
     .then(({ data: { comments } }) => {
       return comments;
     })

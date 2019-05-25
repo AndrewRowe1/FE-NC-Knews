@@ -5,11 +5,11 @@ import CommentVoting from './CommentVoting';
 
 class ArticleComments extends Component {
   state = {
-    body: '', comments: [], loading: true, disable: false
+    body: '', comments: [], loading: true, disable: false, p: 1, comment_count: 0
   };
 
   render () {
-    const { body, comments, loading, disable } = this.state;
+    const { body, comments, loading, disable, p, comment_count } = this.state;
     const { article, loggedInUser } = this.props;
     return loading ? <p>loading ...</p> : (
       <div key="articleComments">
@@ -22,6 +22,8 @@ class ArticleComments extends Component {
                 })} />
               </span>
               <button>Submit Comment</button>
+              <button disabled={p === Math.ceil(comment_count / 10)} onClick={() => { this.changePage(1) }} > More Articles</button >
+              <button disabled={this.state.p === 1} onClick={() => { this.changePage(-1) }} >Previous Articles</button>
             </form>)
             : null}
         </div >
@@ -81,17 +83,24 @@ class ArticleComments extends Component {
   /*<ArticleCommentsList article={article} comments={comments} loggedInUser={this.props.loggedInUser} handleClick={handleClick} />*/
 
   componentDidMount () {
-    const { article_id } = this.props.article;
+    const { article_id, comment_count } = this.props.article;
     getArticleComments(article_id)
       .then(comments => {
-        this.setState({ comments, loading: false })
+        this.setState({ comments, loading: false, comment_count })
       })
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate (prevProps, prevState) {
     const { loggedInUser } = this.props;
     if (prevProps.loggedInUser !== loggedInUser) {
       this.setState({ voting: [] });
+    }
+    if (prevState.p !== this.state.p) {
+      const { article_id, comment_count } = this.props.article;
+      getArticleComments(article_id, { p: this.state.p })
+        .then((comments) => {
+          this.setState({ comments, loading: false, comment_count });
+        });
     }
   }
 
@@ -123,6 +132,12 @@ class ArticleComments extends Component {
       })
       this.setState({ comments: filtered });
     });
+  }
+
+  changePage = direction => {
+    this.setState(prevState => {
+      return { p: prevState.p + direction };
+    })
   }
 
 }
