@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { patchComment } from '../api';
 
 class CommentVoting extends Component {
-
   state = {
-    votes: 0, disable: false
+    disable: false, votes: 0
   }
 
   render () {
     const { comment, loggedInUser } = this.props;
     const { disable, votes } = this.state;
+
     return (
-      <div>
-        <td>{comment.votes + votes}</td>
+      <React.Fragment>
+        <td>
+          {comment.votes + votes}
+        </td>
         <td>
           {loggedInUser ? (
             <div>
@@ -20,7 +22,7 @@ class CommentVoting extends Component {
               <button disabled={votes === -1 || disable} onClick={() => this.handleVote(-1)}> dislike</ button>
             </div>) : null}
         </td>
-      </div>
+      </React.Fragment>
     )
   }
 

@@ -53,12 +53,12 @@ class ArticleComments extends Component {
                         </div>
                       </td>
                       <td>{comment.body}</td>
-                      <CommentVoting comment={comment} commentId={comment.comment_id} loggedInUser={loggedInUser} />
+                      <CommentVoting comment={comment} loggedInUser={loggedInUser} />
                       <td>
                         {loggedInUser === comment.author ?
                           (<button onClick={() => this.handleDelete(comment.comment_id)}>
                             Delete Comment
-                          </button>)
+                            </button>)
                           : null}
                       </td>
                     </tr>
@@ -71,16 +71,6 @@ class ArticleComments extends Component {
       </div>
     );
   }
-  /*             <div onClick={this.handleClick}>
-              <Link to={`/articles/${article.article_id}`} >Go back to article</Link>
-            </div>
-  */
-
-  /*<button disabled={this.aggregateVoting(comment.comment_id, voting) === 1 || disable} onClick={() => this.handleVote(comment.comment_id, 1)}> like</button>
-                              <button disabled={this.aggregateVoting(comment.comment_id, voting) === -1 || disable} onClick={() => this.handleVote(comment.comment_id, -1)}> dislike</ button>
-                              */
-
-  /*<ArticleCommentsList article={article} comments={comments} loggedInUser={this.props.loggedInUser} handleClick={handleClick} />*/
 
   componentDidMount () {
     const { article_id, comment_count } = this.props.article;
