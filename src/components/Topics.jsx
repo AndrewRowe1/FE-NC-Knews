@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getTopics } from '../api';
 import TopicsList from './TopicsList';
-import '../Topics.css';
+import '../css/Topics.css';
 
 class Topics extends Component {
   state = { topics: null, loading: true };

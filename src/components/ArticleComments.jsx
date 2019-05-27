@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getArticleComments, submitComment, deleteComment } from '../api';
 import FormatDate from './FormatDate';
 import CommentVoting from './CommentVoting';
-import '../ArticleComments.css';
+import '../css/ArticleComments.css';
 
 class ArticleComments extends Component {
   state = {

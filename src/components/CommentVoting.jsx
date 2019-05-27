@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { patchComment } from '../api';
-import '../CommentVoting.css';
+import '../css/CommentVoting.css';
 
 class CommentVoting extends Component {
   state = {

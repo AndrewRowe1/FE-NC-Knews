@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router'
 import LogInBox from './LogInBox';
-import '../Header.css';
+import '../css/Header.css';
 
 const Header = (props) => {
   const { logInUser, loggedInUser } = props;
