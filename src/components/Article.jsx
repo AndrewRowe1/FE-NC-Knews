@@ -3,6 +3,7 @@ import { getArticle, patchArticle } from '../api';
 import { navigate } from '@reach/router';
 import ArticleComments from './ArticleComments';
 import FormatDate from './FormatDate';
+import '../Article.css';
 
 class Article extends Component {
   state = { article: null, loading: true, votes: 0, disable: false };

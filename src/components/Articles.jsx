@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getArticles } from '../api';
 import ArticlesList from './ArticlesList';
+import '../Articles.css';
 
 class Articles extends Component {
   state = { articles: null, loading: true, sort: null, p: 1, total_count: 0 };

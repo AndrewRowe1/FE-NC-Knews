@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import FormatDate from './FormatDate';
+import '../ArticlesList.css';
 
 const ArticlesList = ({ articles }) => {
   return (

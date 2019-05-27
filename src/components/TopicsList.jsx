@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
+import '../TopicsList.css';
 
 const TopicList = ({ topics }) => {
   return (

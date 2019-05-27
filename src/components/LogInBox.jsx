@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getUser } from '../api';
 import { navigate } from '@reach/router';
+import '../LoginBox.css';
 
 class LoginBox extends Component {
   state = {

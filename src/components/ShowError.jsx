@@ -1,4 +1,5 @@
 import React from 'react';
+import '../ShowError.css';
 
 //function showing html error page
 const ShowError = ({ location }) => {

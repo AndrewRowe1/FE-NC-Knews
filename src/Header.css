@@ -1,0 +1,17 @@
+.Links {
+  color: blue
+}
+
+.Links:hover {
+  color: red
+}
+
+.HeaderLinks {
+  background: linear-gradient(yellow,brown);
+  flex: auto
+}
+
+.LogInBox {
+  flex: auto;
+  width: 100%
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 import { submitArticle } from '../api';
+import '../NewArticleForm.css';
 
 class NewArticleForm extends Component {
   state = {
