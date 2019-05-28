@@ -3,7 +3,7 @@ import '../css/Landing.css';
 
 const Landing = (props) => {
   const { loggedInUser } = props;
-  return (<div>
+  return (<div class="LandingLinks">
     <h1>Welcome to Northcoders News Home Page</h1>
     {!loggedInUser ? (
       <div>
