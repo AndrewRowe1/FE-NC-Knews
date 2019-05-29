@@ -1,5 +1,5 @@
 .Links {
-  color: blue
+  color: black
 }
 
 .Links:hover {
@@ -7,17 +7,7 @@
 }
 
 .HeaderLinks {
-  background-image: url('http://bestanimations.com/Nature/fall/fall-forest-scene-gif.gif');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center; 
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-  display: block;
-}
-
-.LogInBox {
-  flex: auto;
-  width: 100%
+  background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+  font-size: 200%;
+  align-content: center
 }

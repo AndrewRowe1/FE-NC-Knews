@@ -5,31 +5,31 @@ import '../css/ArticlesList.css';
 
 const ArticlesList = ({ articles }) => {
   return (
-    <ul>
+    <ul class="flex-container">
       {articles.map((article) => {
-        return <table key={article.article_id}>
-          <tbody>
-            <tr className="articleList">
-              <th>Author</th>
-              <th>Title</th>
-              <th>Votes</th>
-              <th>Created At</th>
-              <th>Comment Count</th>
-              <th>Body</th>
-              <th>Go to Article</th>
+        return <table class="table" key={article.article_id}>
+          <tbody class="tbody">
+            <tr class="tr" className="articleList">
+              <th class="th">Author</th>
+              <th class="th">Title</th>
+              <th class="th">Votes</th>
+              <th class="th">Created At</th>
+              <th class="th">Comment Count</th>
+              <th class="th">Body</th>
+              <th class="th">Go to Article</th>
             </tr>
-            <tr>
-              <td>{article.author}</td>
-              <td>{article.title}</td>
-              <td>{article.votes}</td>
-              <td>
+            <tr class="tr">
+              <td class="td">{article.author}</td>
+              <td class="td">{article.title}</td>
+              <td class="td">{article.votes}</td>
+              <td class="td">
                 <div>
                   <FormatDate dateToFormat={article.created_at} />
                 </div>
               </td>
-              <td>{article.comment_count}</td>
-              <td>{firstTenWords(article.body)}</td>
-              <td>
+              <td class="td">{article.comment_count}</td>
+              <td class="td">{firstTenWords(article.body)}</td>
+              <td class="td">
                 <Link to={`/articles/${article.article_id}`}>Get {article.title} article </Link>
               </td>
             </tr>

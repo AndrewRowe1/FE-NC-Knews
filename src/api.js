@@ -64,8 +64,8 @@ export const getArticleComments = (id, query) => {
     })
 }
 
+//voteDirection : {inc_votes : 1} or {inc_votes : -1}
 export const patchArticle = (id, voteDirection) => {
-  //voteDirection : {inc_votes : 1} or {inc_votes : -1}
   return axios.patch(`${url}/articles/${id}`, voteDirection)
     .then(({ data: { article } }) => {
       return article;
@@ -73,7 +73,6 @@ export const patchArticle = (id, voteDirection) => {
 }
 
 export const patchComment = (id, voteDirection) => {
-  //voteDirection : {inc_votes : 1} or {inc_votes : -1}
   return axios.patch(`${url}/comments/${id}`, voteDirection)
     .then(({ data: { comment } }) => {
       return comment;

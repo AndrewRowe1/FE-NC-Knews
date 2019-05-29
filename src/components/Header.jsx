@@ -12,7 +12,7 @@ const Header = (props) => {
       <Link class="Links" to='/new-article'>Post New Article </Link>
       <Link class="Links" to='/topics'>Topics</Link>
       <br />
-      <LogInBox class="LogInBox" loggedInUser={loggedInUser} logInUser={logInUser} />
+      <LogInBox loggedInUser={loggedInUser} logInUser={logInUser} />
     </div>
   )
 }

@@ -4,8 +4,36 @@
   height: 100%;
   width: 100%;
   flex: 1 0 auto;
-  background: url(../img/images_019.jpeg) no-repeat center center fixed;
+  background: url(../img/machu-picchu.jpg) no-repeat center center fixed;
   background-size: cover;
   overflow: hidden;
   position: absolute
+}
+
+.formNAF {
+  display: center;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 200% 
+}
+
+.formNAF:focus {
+  background-color: aqua
+}
+
+.divNAF {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  width: 100%;
+  flex: 1 0 auto;
+  background: url(../img/Venice.jpeg) no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  position: absolute
+} 
+
+.h2:hover {
+  color: green
 }
