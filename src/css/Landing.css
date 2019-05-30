@@ -4,24 +4,12 @@
   height: 100%;
   width: 100%;
   flex: 1 0 auto;
-  background: url(../img/Samarkand2.jpeg) no-repeat center center fixed;
+  background: url(../img/Melbourne.jpeg) no-repeat center center fixed;
   background-size: cover;
-  overflow: hidden;
-  position: absolute
-}
-
-.h1:hover {
-  color: blue
-}
-
-.h2Land:hover {
-  color: green
+  position: fixed;
+  color: red
 }
 
 .pLand {
   font-size: 130%
-}
-
-.pLand:hover {
-  color: blue
 }

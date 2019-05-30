@@ -13,14 +13,14 @@ class LoginBox extends Component {
     const { userNameInput, error } = this.state;
 
     return (!loggedInUser ? (
-      <form class="LogInBox" align="center" onSubmit={this.handleSubmit}>
+      <form className="LogInBox" align="center" onSubmit={this.handleSubmit}>
         <input required={true} placeholder="Input username" onChange={this.handleTyping} type="text" />
         <button>Login!</button>
         {(error && userNameInput === null) ? <p>Invalid username! Please login again</p> : null}
       </form>
     )
       : (
-        <form class="LogInBox" align="center" onSubmit={this.handleLogout}>
+        <form className="LogInBox" align="center" onSubmit={this.handleLogout}>
           <button>Logout as {loggedInUser}!</button>
         </form>
       )

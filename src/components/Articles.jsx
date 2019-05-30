@@ -14,7 +14,7 @@ class Articles extends Component {
         {sortMethods.map((sorting) => {
           return <button disabled={sort === sorting} key={`sort by ${sorting}`} onClick={() => { this.sortArticles(sorting) }}>Sort Articles by {sorting === 'created_at' ? 'date' : sorting} </button>
         })}
-        {sort ? <p>Articles sorted by {sort === 'created_at' ? 'date' : sort}</p> : null}
+        {sort ? <p>Articles sorted by {sort === 'created_at' ? 'date' : sort}</p> : <p>Articles not sorted</p>}
         <button disabled={p === Math.ceil(total_count / 10)} onClick={() => { this.changePage(1) }} > More Articles</button >
         <button disabled={this.state.p === 1} onClick={() => { this.changePage(-1) }} >Previous Articles</button>
         <ArticlesList articles={articles} />
@@ -41,8 +41,9 @@ class Articles extends Component {
   }
 
   sortArticles = (sort) => {
-    getArticles({ sort_by: sort })
+    getArticles({ sort_by: sort, p: this.state.p })
       .then((articles) => {
+        console.log(articles)
         this.setState({ articles, loading: false, sort });
       });
   }

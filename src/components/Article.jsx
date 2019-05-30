@@ -21,6 +21,7 @@ class Article extends Component {
               <th>Author</th>
               <th>Votes</th>
               <th>Created At</th>
+              <th>Comment Count</th>
               <th>Body</th>
             </tr>
             <tr>
@@ -31,6 +32,7 @@ class Article extends Component {
                   <FormatDate dateToFormat={article.created_at} />
                 </div>
               </td>
+              <td>{article.comment_count}</td>
               <td>{article.body}</td>
             </tr>
           </tbody>

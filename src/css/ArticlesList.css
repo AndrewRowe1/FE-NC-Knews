@@ -3,6 +3,8 @@
   font-size: 14px;
   border-collapse: collapse;
   width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .td {

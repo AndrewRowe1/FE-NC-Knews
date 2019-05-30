@@ -6,11 +6,11 @@ import '../css/Header.css';
 const Header = (props) => {
   const { logInUser, loggedInUser } = props;
   return (
-    <div class="HeaderLinks">
-      <Link class="Links" to='/'>Home </Link>
-      <Link class="Links" to='/articles'>Articles </Link>
-      <Link class="Links" to='/new-article'>Post New Article </Link>
-      <Link class="Links" to='/topics'>Topics</Link>
+    <div className="HeaderLinks">
+      <Link className="Links" to='/'>Home </Link>
+      <Link className="Links" to='/articles'>Articles </Link>
+      <Link className="Links" to='/new-article'>Post New Article </Link>
+      <Link className="Links" to='/topics'>Topics</Link>
       <br />
       <LogInBox loggedInUser={loggedInUser} logInUser={logInUser} />
     </div>

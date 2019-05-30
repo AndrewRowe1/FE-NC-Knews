@@ -34,8 +34,8 @@ class NewArticleForm extends Component {
           <button >Submit Article</button>
         </form>
       </div>) : <p class="p">Loading ......</p>
-    ) : <div class="divNAF">
-        <h2 class="h2">Please log in to be able to post an article!</h2>
+    ) : <div className="divNAF">
+        <h2 className="h2">Please log in to be able to post an article!</h2>
       </div>
   }
 
