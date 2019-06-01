@@ -8,6 +8,7 @@ class Articles extends Component {
 
   render () {
     const { articles, loading, sort, p, total_count } = this.state;
+    const { loggedInUser } = this.props;
     const sortMethods = ['created_at', 'comment_count', 'votes'];
     return loading ? <p>loading ...</p> : (
       <div>
@@ -17,7 +18,7 @@ class Articles extends Component {
         {sort ? <p>Articles sorted by {sort === 'created_at' ? 'date' : sort}</p> : <p>Articles not sorted</p>}
         <button disabled={p === Math.ceil(total_count / 10)} onClick={() => { this.changePage(1) }} > More Articles</button >
         <button disabled={this.state.p === 1} onClick={() => { this.changePage(-1) }} >Previous Articles</button>
-        <ArticlesList articles={articles} />
+        <ArticlesList loggedInUser={loggedInUser} articles={articles} />
       </div>
     );
   };
@@ -44,7 +45,6 @@ class Articles extends Component {
   sortArticles = (sort) => {
     getArticles({ sort_by: sort, p: this.state.p })
       .then((articles) => {
-        console.log(articles)
         this.setState({ articles, loading: false, sort });
       });
   }
