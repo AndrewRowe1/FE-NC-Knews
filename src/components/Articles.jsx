@@ -31,8 +31,9 @@ class Articles extends Component {
   }
 
   componentDidUpdate (prevProps, prevState) {
+    const { sort } = this.state;
     if (prevState.p !== this.state.p) {
-      getArticles({ p: this.state.p })
+      getArticles({ sort_by: sort, p: this.state.p })
         .then((articles) => {
           const { total_count } = articles[0];
           this.setState({ articles, loading: false, total_count });
