@@ -40,6 +40,13 @@ class Articles extends Component {
           this.setState({ articles, loading: false, total_count });
         });
     }
+    else if (prevState.sort !== this.state.sort) {
+      getArticles({ sort_by: sort, p: 1 })
+        .then((articles) => {
+          const { total_count } = articles[0];
+          this.setState({ articles, loading: false, total_count, p: 1 });
+        });
+    }
   }
 
   sortArticles = (sort) => {
