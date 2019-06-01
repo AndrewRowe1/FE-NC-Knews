@@ -1,4 +1,5 @@
 .table {
+  display: flex;
   font-family: Verdana;
   font-size: 14px;
   border-collapse: collapse;
