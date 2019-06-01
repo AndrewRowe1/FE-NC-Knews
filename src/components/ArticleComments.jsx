@@ -15,6 +15,7 @@ class ArticleComments extends Component {
     return loading ? <p>loading ...</p> : (
       <div key="articleComments">
         <div>
+          <h2 className="h2">Comments</h2>
           {loggedInUser ?
             (<form className="SubmitComment" disabled={disable} onSubmit={this.handleSubmit} >
               <span>
@@ -25,8 +26,8 @@ class ArticleComments extends Component {
               <button>Submit Comment</button>
             </form>)
             : null}
-          <button disabled={p === Math.ceil(comment_count / 10)} onClick={() => { this.changePage(1) }} > More Articles</button >
-          <button disabled={this.state.p === 1} onClick={() => { this.changePage(-1) }} >Previous Articles</button>
+          <button disabled={p === Math.ceil(comment_count / 10)} onClick={() => { this.changePage(1) }} > More Comments</button >
+          <button disabled={this.state.p === 1} onClick={() => { this.changePage(-1) }} >Previous Comments</button>
         </div >
         {article.article_id > 0 ? (
           <div>
