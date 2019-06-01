@@ -9,9 +9,7 @@ class Topics extends Component {
   render () {
     const { topics, loading } = this.state;
     return loading ? <p>loading ...</p> : (
-      <div>
-        <TopicsList topics={topics} />
-      </div>
+      <TopicsList topics={topics} />
     );
   }
 

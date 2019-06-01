@@ -6,8 +6,8 @@
   flex: 1 0 auto;
   background: url(../img/Monaco.jpeg) no-repeat center center fixed;
   background-size: cover;
-  overflow: hidden;
   position: fixed;
+  overflow: -moz-hidden-unscrollable;
   color: red
 }
 

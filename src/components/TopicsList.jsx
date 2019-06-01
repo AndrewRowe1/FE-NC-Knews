@@ -4,7 +4,7 @@ import '../css/TopicsList.css';
 
 const TopicList = ({ topics }) => {
   return (
-    <ul class="TopicsList">
+    <div class="TopicsList">
       {topics.map((topic) => {
         return <div key={topic.slug}>
           <h1 class="h1" key={topic.slug}>{topic.slug}</h1>
@@ -12,7 +12,7 @@ const TopicList = ({ topics }) => {
           <Link class="TopicsLinks" to={`/topics/${topic.slug}`} >Get {topic.slug} related articles</Link>
         </div>
       })}
-    </ul>
+    </div>
   )
 }
 
