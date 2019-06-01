@@ -7,6 +7,7 @@ class Articles extends Component {
   state = { articles: null, loading: true, sort: null, p: 1, total_count: 0 };
 
   render () {
+    console.log('articles render')
     const { articles, loading, sort, p, total_count } = this.state;
     const { loggedInUser } = this.props;
     const sortMethods = ['created_at', 'comment_count', 'votes'];

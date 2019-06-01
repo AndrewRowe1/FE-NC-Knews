@@ -9,6 +9,7 @@ class Article extends Component {
   state = { article: null, loading: true };
 
   render () {
+    console.log('article render')
     const { article, loading } = this.state;
     const { loggedInUser } = this.props;
 

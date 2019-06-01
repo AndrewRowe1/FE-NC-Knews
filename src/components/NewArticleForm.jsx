@@ -14,8 +14,8 @@ class NewArticleForm extends Component {
   render () {
     const { loggedInUser, topics, execute } = this.props;
     return loggedInUser ? (execute ?
-      (<div class="Background">
-        <form class="formNAF" onSubmit={this.handleSubmit} >
+      (<div className="Background">
+        <form className="formNAF" onSubmit={this.handleSubmit} >
           <span>
             <select type="dropdown" onChange={(event => { this.handleChange('topic', event.target.value) })}>
               {topics.map((topic) => {
@@ -33,7 +33,7 @@ class NewArticleForm extends Component {
           </span>
           <button >Submit Article</button>
         </form>
-      </div>) : <p class="p">Loading ......</p>
+      </div>) : <p className="p">Loading ......</p>
     ) : <div className="divNAF">
         <h2 className="h2">Please log in to be able to post an article!</h2>
       </div>
@@ -46,7 +46,8 @@ class NewArticleForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     submitArticle(this.state).then(article => {
-      navigate(`/articles/${article.article_id}`)
+      navigate(`/articles`)
+      //navigate(`/articles/${article.article_id}`)
     });
   };
 }
