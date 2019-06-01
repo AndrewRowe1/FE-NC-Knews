@@ -7,7 +7,7 @@
   background: url(../img/Monaco.jpeg) no-repeat center center fixed;
   background-size: cover;
   position: fixed;
-  overflow: hidden;
+  overflow: scroll;
   color: red
 }
 

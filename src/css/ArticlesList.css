@@ -2,9 +2,10 @@
   font-family: Verdana;
   font-size: 14px;
   border-collapse: collapse;
-  width: 600px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
+  overflow: scroll
 }
 
 .td {
