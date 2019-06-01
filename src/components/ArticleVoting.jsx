@@ -23,7 +23,7 @@ class ArticleVoting extends Component {
               <button disabled={votes === -1 || disable} onClick={() => this.handleVote(-1)}> dislike</ button>
             </div>) : null}
         </td>
-      </React.Fragment >
+      </React.Fragment>
     )
   }
 

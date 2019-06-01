@@ -18,22 +18,22 @@ class Article extends Component {
         <table>
           <tbody>
             <tr className="articleList">
-              <th>Author</th>
-              <th>Votes</th>
-              <th>Created At</th>
-              <th>Comment Count</th>
-              <th>Body</th>
+              <th className="th">Author</th>
+              <th className="th">Votes</th>
+              <th className="th">Created At</th>
+              <th className="th">Comment Count</th>
+              <th className="th">Body</th>
             </tr>
             <tr>
-              <td>{article.author}</td>
-              <td>{article.votes}</td>
-              <td>
+              <td className="td">{article.author}</td>
+              <td className="td">{article.votes}</td>
+              <td className="td">
                 <div>
                   <FormatDate dateToFormat={article.created_at} />
                 </div>
               </td>
-              <td>{article.comment_count}</td>
-              <td>{article.body}</td>
+              <td className="td">{article.comment_count}</td>
+              <td className="td">{article.body}</td>
             </tr>
           </tbody>
         </table>
