@@ -9,21 +9,21 @@ class ArticlesList extends Component {
     const { loggedInUser, articles } = this.props;
     return (
       <table className="table">
-        {articles.map((article) => {
-          return <React.Fragment key={article.article_id}>
-            <tbody className="tbody">
-              <tr className="tr" >
-                <th className="th">Author</th>
-                <th className="th">Title</th>
-                <th className="th">Created At</th>
-                <th className="th">Comment Count</th>
-                <th className="th">Body</th>
-                <th className="th">Go to Article</th>
-                <th className="th">Votes</th>
-                <th className="th">
-                  {loggedInUser ? <div>Vote on Article</div> : null}
-                </th>
-              </tr>
+        <tbody className="tbody">
+          <tr className="tr" >
+            <th className="th">Author</th>
+            <th className="th">Title</th>
+            <th className="th">Created At</th>
+            <th className="th">Comment Count</th>
+            <th className="th">Body</th>
+            <th className="th">Go to Article</th>
+            <th className="th">Votes</th>
+            <th className="th">
+              {loggedInUser ? <div>Vote on Article</div> : null}
+            </th>
+          </tr>
+          {articles.map((article) => {
+            return <React.Fragment key={article.article_id}>
               <tr className="tr">
                 <td className="td">{article.author}</td>
                 <td className="td">{article.title}</td>
@@ -39,9 +39,9 @@ class ArticlesList extends Component {
                 </td>
                 <ArticleVoting article={article} loggedInUser={loggedInUser} />
               </tr>
-            </tbody>
-          </React.Fragment>
-        })}
+            </React.Fragment>
+          })}
+        </tbody>
       </table>
     )
   }

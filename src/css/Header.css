@@ -8,6 +8,8 @@
 
 .HeaderLinks {
   background-image: linear-gradient(to right, white,yellow,gold, brown);
-  font-size: 200%;
+  font-size: 125%;
   align-content: center;
+  overflow: -moz-hidden-unscrollable;
+  width: 100%;
 }

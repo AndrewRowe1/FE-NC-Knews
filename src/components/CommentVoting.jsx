@@ -13,9 +13,10 @@ class CommentVoting extends Component {
 
     return (
       <React.Fragment>
-        <td className="td">
-          {comment.votes + votes}
-        </td>
+        {loggedInUser ? (
+          <td className="td">
+            {comment.votes + votes}
+          </td>) : null}
         {loggedInUser ? (
           <td className="td">
             <div>

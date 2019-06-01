@@ -11,7 +11,6 @@ const Header = (props) => {
       <Link className="Links" to='/articles'>Articles </Link>
       <Link className="Links" to='/new-article'>Post New Article </Link>
       <Link className="Links" to='/topics'>Topics</Link>
-      <br />
       <LogInBox loggedInUser={loggedInUser} logInUser={logInUser} />
     </div>
   )

@@ -16,7 +16,7 @@ class ArticleComments extends Component {
       <div key="articleComments">
         <div>
           {loggedInUser ?
-            (<form disabled={disable} onSubmit={this.handleSubmit} >
+            (<form className="SubmitComment" disabled={disable} onSubmit={this.handleSubmit} >
               <span>
                 <input required={true} placeholder="body" value={body} onChange={(event => {
                   this.handleChange('body', event.target.value)
@@ -50,7 +50,7 @@ class ArticleComments extends Component {
                         </div>
                       </td>
                       <td className="td">{comment.body}</td>
-                      {loggedInUser ? <CommentVoting comment={comment} loggedInUser={loggedInUser} /> : null}
+                      <CommentVoting comment={comment} loggedInUser={loggedInUser} />
                       {loggedInUser === comment.author ?
                         <td className="td">
                           <button onClick={() => this.handleDelete(comment.comment_id)}>
