@@ -33,35 +33,30 @@ class ArticleComments extends Component {
             <table>
               <tbody>
                 <tr key="commentHeaders" className="articleCommentsList">
-                  <th>Author</th>
-                  <th>Created At</th>
-                  <th>Body</th>
-                  <th>Votes</th>
-                  <th>
-                    {loggedInUser ? <div>Vote on Comment</div> : null}
-                  </th>
-                  <th>
-                    {loggedInUser ? <div>Delete Comment</div> : null}
-                  </th>
+                  <th className="th">Author</th>
+                  <th className="th">Created At</th>
+                  <th className="th">Body</th>
+                  <th className="th">Votes</th>
+                  {loggedInUser ? <th className="th">Vote on Comment</th> : null}
+                  {loggedInUser ? <th className="th">Delete Comment</th> : null}
                 </tr>
                 {comments.map((comment) => {
                   return (
                     <tr key={comment.comment_id}>
-                      <td>{comment.author}</td>
-                      <td>
+                      <td className="td">{comment.author}</td>
+                      <td className="td">
                         <div>
                           <FormatDate dateToFormat={comment.created_at} />
                         </div>
                       </td>
-                      <td>{comment.body}</td>
-                      <CommentVoting comment={comment} loggedInUser={loggedInUser} />
-                      <td>
-                        {loggedInUser === comment.author ?
-                          (<button onClick={() => this.handleDelete(comment.comment_id)}>
+                      <td className="td">{comment.body}</td>
+                      {loggedInUser ? <CommentVoting comment={comment} loggedInUser={loggedInUser} /> : null}
+                      {loggedInUser === comment.author ?
+                        <td className="td">
+                          <button onClick={() => this.handleDelete(comment.comment_id)}>
                             Delete Comment
-                            </button>)
-                          : null}
-                      </td>
+                            </button>
+                        </td> : <td className="td">{null}</td>}
                     </tr>
                   )
                 })}

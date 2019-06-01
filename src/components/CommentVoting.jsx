@@ -16,13 +16,13 @@ class CommentVoting extends Component {
         <td className="td">
           {comment.votes + votes}
         </td>
-        <td className="td">
-          {loggedInUser ? (
+        {loggedInUser ? (
+          <td className="td">
             <div>
               <button disabled={votes === 1 || disable} onClick={() => this.handleVote(1)}> like</button>
               <button disabled={votes === -1 || disable} onClick={() => this.handleVote(-1)}> dislike</ button>
-            </div>) : null}
-        </td>
+            </div>
+          </td>) : null}
       </React.Fragment>
     )
   }
