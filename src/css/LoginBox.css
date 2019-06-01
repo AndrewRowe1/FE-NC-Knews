@@ -1,6 +1,6 @@
 .LogInBox {
-  display: flex;
   width: 100%;
-  font-size: 300%;
+  font-size: 150%;
   text-align: center;
+  padding-top: 1vh
 }
