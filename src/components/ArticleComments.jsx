@@ -111,10 +111,6 @@ class ArticleComments extends Component {
     });
   };
 
-  /*handleClick = event => {
-    this.props.handleClick(true);
-  }*/
-
   handleDelete = commentId => {
     deleteComment(commentId).then(comment => {
       const { comments } = this.state;
@@ -130,7 +126,6 @@ class ArticleComments extends Component {
       return { p: prevState.p + direction };
     })
   }
-
 }
 
 export default ArticleComments;

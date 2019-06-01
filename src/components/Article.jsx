@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { getArticle, patchArticle } from '../api';
+import { getArticle } from '../api';
 import { navigate } from '@reach/router';
 import ArticleComments from './ArticleComments';
 import FormatDate from './FormatDate';
 import '../css/Article.css';
 
 class Article extends Component {
-  state = { article: null, loading: true, votes: 0, disable: false };
+  state = { article: null, loading: true };
 
   render () {
-    const { article, loading, votes, disable } = this.state;
+    const { article, loading } = this.state;
     const { loggedInUser } = this.props;
 
     return loading ? <p>loading ...</p> : (
@@ -26,7 +26,7 @@ class Article extends Component {
             </tr>
             <tr>
               <td>{article.author}</td>
-              <td>{article.votes + votes}</td>
+              <td>{article.votes}</td>
               <td>
                 <div>
                   <FormatDate dateToFormat={article.created_at} />
@@ -37,28 +37,10 @@ class Article extends Component {
             </tr>
           </tbody>
         </table>
-        {loggedInUser ? (
-          <div>
-            <button disabled={votes === 1 || disable} onClick={() => this.handleVote(1)}> like</button>
-            <button disabled={votes === -1 || disable} onClick={() => this.handleVote(-1)}> dislike</ button>
-          </div>
-        ) : null}
-        <ArticleComments article={article} loggedInUser={this.props.loggedInUser} />
+        <ArticleComments article={article} loggedInUser={loggedInUser} />
       </div >
     );
   }
-
-  /*
-<div onClick={this.handleClick}>
-          {display ? <Link to={`/articles/${article.article_id}/comments`} >Go to comments</Link>
-            : null}
-        </div>
-
-  <Router>
-          <ArticleComments path="comments" article={article} loggedInUser={this.props.loggedInUser} handleClick={this.handleClick} />
-        </Router>
-  <ArticleComments article={article} loggedInUser={this.props.loggedInUser} handleClick={this.handleClick} />
-  */
 
   componentDidMount () {
     getArticle(this.props.article_id)
@@ -75,39 +57,6 @@ class Article extends Component {
         navigate('/error')
       })
   }
-
-  componentDidUpdate (prevProps) {
-    const { loggedInUser } = this.props;
-    if (prevProps.loggedInUser !== loggedInUser) {
-      this.setState({ votes: 0 })
-    }
-  }
-
-  handleVote = (direction) => {
-    this.setState({ disable: true })
-    patchArticle(this.props.article_id, { inc_votes: direction })
-      .then(article => {
-        this.setState((prevState) => {
-          const newVote = prevState.votes + direction;
-          return {
-            votes: newVote, disable: false
-          }
-        })
-      })
-  }
-
-  /*handleClick = event => {
-    if (event === true) {
-      this.setState({ display: true })
-    } else {
-      this.setState({ display: false })
-    }
-  }
-
-  displayComments = () => {
-    const { article } = this.state;
-    navigate(`/articles/${article.article_id}/comments`, { state: { new: true } });
-  }*/
 }
 
 export default Article;
