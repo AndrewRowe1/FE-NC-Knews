@@ -51,12 +51,12 @@ class ArticleComments extends Component {
                       </td>
                       <td className="td">{comment.body}</td>
                       <CommentVoting comment={comment} loggedInUser={loggedInUser} />
-                      {loggedInUser === comment.author ?
+                      {loggedInUser ? (loggedInUser === comment.author ?
                         <td className="td">
                           <button onClick={() => this.handleDelete(comment.comment_id)}>
                             Delete Comment
                             </button>
-                        </td> : <td className="td">{null}</td>}
+                        </td> : <td className="td">{null}</td>) : null}
                     </tr>
                   )
                 })}

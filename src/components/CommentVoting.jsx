@@ -16,7 +16,7 @@ class CommentVoting extends Component {
         {loggedInUser ? (
           <td className="td">
             {comment.votes + votes}
-          </td>) : null}
+          </td>) : <td className="td">{comment.votes}</td>}
         {loggedInUser ? (
           <td className="td">
             <div>
