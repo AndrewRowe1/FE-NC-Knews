@@ -1,5 +1,6 @@
 .Links {
-  color: black
+  color: black;
+  text-align: center;
 }
 
 .Links:hover {
@@ -7,6 +8,7 @@
 }
 
 .HeaderLinks {
+  display: flex;
   background-image: linear-gradient(to right, white,yellow,gold, brown);
   font-size: 125%;
   align-content: center;
