@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { getArticles } from '../api';
 import ArticlesList from './ArticlesList';
 import { navigate } from '@reach/router';
-import '../css/TopicArticles.css';
 
 class TopicArticles extends Component {
   state = { articles: null, loading: true };

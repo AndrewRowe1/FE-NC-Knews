@@ -3,7 +3,6 @@ import { getArticle } from '../api';
 import { navigate } from '@reach/router';
 import ArticleComments from './ArticleComments';
 import FormatDate from './FormatDate';
-import '../css/Article.css';
 
 class Article extends Component {
   state = { article: null, loading: true };

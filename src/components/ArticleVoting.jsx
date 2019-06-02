@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { patchArticle } from '../api';
-import '../css/ArticleVoting.css';
 
 class ArticleVoting extends Component {
   state = {
