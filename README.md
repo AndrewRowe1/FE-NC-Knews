@@ -1,16 +1,26 @@
+# Northcoders News
+
+Northcoders News is a database of articles, together with comments, on distinct topics with a table of users. Users are able to create new articles, and contribute new comments for each individual article.  The articles and the comments are able to be voted upon by database users.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Hosted Version of the Project
 
-<.....to complete >
+[https://flamboyant-swartz-17e6e3.netlify.com]
 
 ## Back End Repository of the Project
 
-https://github.com/AndrewRowe1/BE-NC-Knews
+[https://github.com/AndrewRowe1/BE-NC-Knews]
 
 ## Hosted Version of the Back End
 
-https://nc-news-andrewr.herokuapp.com/api
+[https://nc-news-andrewr.herokuapp.com/api]
+
+## Getting Started
+
+### Setting up the project
+
+
 
 ## Available Scripts
 
